@@ -21,12 +21,12 @@
                 <a href="doctor.php" class="nav-item nav-link">Doctor</a>
                 <a href="service.php" class="nav-item nav-link">Service</a>
                 <a href="contact.php" class="nav-item nav-link">Contact</a>
-                <div class="nav-item dropdown">
+                <div class="nav-item dropdown"> 
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-person-circle"></i> User</a>
                     <div class="dropdown-menu m-0">
-                        <a href="#">Patient</a><br>
+                        <a href="../home/mainhome.php">Patient</a><br>
                         <a href="#">Doctor</a><br>
-                        <a href="#">Admin</a>
+                        <a href="../admin/adminhome.php">Admin</a>
                     </div>
                 </div>
             </div>

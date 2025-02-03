@@ -8,7 +8,7 @@
      ?>
      <?php
         $docid="";
-        $name="";
+        $docname="";
         $contactno="";
         $emailid="";
         $qualification="";
@@ -26,7 +26,7 @@
             $docid=$_SESSION['docid'];
             $query="select * from dentist where docid='$docid'";
             $rw=$dc->getrow($query);
-            $name=$rw['name'];
+            $docname=$rw['docname'];
             $contactno=$rw['contactno'];
             $emailid=$rw['emailid'];
             $qualification=$rw['qualification'];
@@ -37,7 +37,7 @@
 
         if(isset($_POST['bsave']))
         {
-            $name=$_POST['name'];
+            $docname=$_POST['docname'];
             $contactno=$_POST['contactno'];
             $emailid=$_POST['emailid'];
             $qualification=$_POST['qualification'];
@@ -47,8 +47,8 @@
 
         if($_SESSION['trans']=='new')
         {
-                $query = "INSERT INTO `dentist`( `name`, `contactno`, `emailid`, `qualification`, `experience`, `speciality`, `aboutus`) 
-                VALUES ('$name','$contactno','$emailid','$qualification','$experience','$speciality','$aboutus')";
+                $query = "INSERT INTO `dentist`( `docname`, `contactno`, `emailid`, `qualification`, `experience`, `speciality`, `aboutus`) 
+                VALUES ('$docname','$contactno','$emailid','$qualification','$experience','$speciality','$aboutus')";
                 $result = $dc->insertrecord($query);
             
             if(!$result)
@@ -59,7 +59,7 @@
 
         if($_SESSION['trans']=='update')
         {
-                $query = "update dentist set name='$name',contactno='$contactno',emailid='$emailid',qualification='$qualification',experience='$experience',speciality='$speciality',aboutus='$aboutus' where docid='$docid'";
+                $query = "update dentist set docname='$docname',contactno='$contactno',emailid='$emailid',qualification='$qualification',experience='$experience',speciality='$speciality',aboutus='$aboutus' where docid='$docid'";
                 $result = $dc->updaterecord($query);
             
             if(!$result)
@@ -106,7 +106,7 @@
                 <div class="row-md-3">
                     <label class="col-md-3 col-form-label">Docname</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" name="name" value='<?php echo $name ?>' autofocus>
+                        <input type="text" class="form-control" name="docname" value='<?php echo $docname ?>' autofocus>
                     </div>
                 </div>
 
@@ -169,8 +169,5 @@
 </main>
     </form>
    </div>
- 
-   
-
 </body>
 </html>

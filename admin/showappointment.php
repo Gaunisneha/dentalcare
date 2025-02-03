@@ -7,7 +7,7 @@
      include("../class/dataclass.php");
      ?>
      <?php
-        $docid="";
+        $regid="";
         $dc= new dataclass();
         $query="";
         $msg=""; 
@@ -17,21 +17,21 @@
         if(isset($_POST['bnew']))
         {
             $_SESSION['trans']='new';
-            header('location:doctorform.php');
+            header('location:registrationform.php');
         
         }
 
     if(isset($_POST['bupdate']))
     {
-        $docid=$_POST['bupdate'];
-        $_SESSION['docid']=$docid;
+        $regid=$_POST['bupdate'];
+        $_SESSION['regid']=$regid;
         $_SESSION['trans']='update';
-        header('location:doctorform.php');
+        header('location:registrationform.php');
     }
     if(isset($_POST['bdelete']))
     {
-        $docid=$_POST['bdelete'];
-        $query="delete from  dentist where docid='$docid'";
+        $regid=$_POST['bdelete'];
+        $query="delete from  registration where regid='$regid'";
         $result=$dc->deleterecord($query);
         if($result)
         {
@@ -52,52 +52,43 @@
             <section class="section dashboard">
                   <div class="row">
                     <div class="col-md-11">
-                        <h2 class="text-center pt-2 ">Dentist details</h2>
-                    </div>
-                    </div>
-                    <div class="row">
-
-                    <div class="col-md-11">
-                         <input type="text" placeholder="Search" id="myInput" class="form-control"  >
+                        <h2 class="text-center">Appointment Data</h2>
                     </div>
                     <div class="col-md-1">
-                         <input type="submit" class="btn btn-success" name="bnew" value="new">
+                         <input type="text" placeholder="Search" id="myInput" class="form-control"  >
                     </div>
                   </div>
                   <div class="row">
                     <div class="12">
                         <table class="table table-bordered">
-                            <thead>
+                    <thead>
                     <tr>
-                        <th>DENTISTID</th><th>DENTISTNAME</th><th>CONTACTNO</th><th>EMAILID</th><th>QUALIFICATION</th><th>EXEPERIENCE</th><th>SPECIALIZATION</th><th>DELETE</th><th>UPDATE</th>
+                        <th>appID</th><th>DATE</th><th>patientid</th><th>docid</th><th>time</th><th>remark</th><th>status</th><th>DELETE</th><th>UPDATE</th>
                     </tr>
                     </thead>
                     <tbody id="myTable">
                     <?php 
-                    $query="select * from dentist";
+                    $query="select * from appointment  ";
                     $tb=$dc->gettable($query);
                     while($rw=mysqli_fetch_array($tb))
                     {
                         echo("<tr>");
+                        echo("<td>".$rw['appid']."</td>");
+                        echo("<td>".$rw['appdate']."</td>");
+                        echo("<td>".$rw['patientid']."</td>");
                         echo("<td>".$rw['docid']."</td>");
-                        echo("<td>".$rw['docname']."</td>");
-                        echo("<td>".$rw['contactno']."</td>");
-                        echo("<td>".$rw['emailid']."</td>");
-                        echo("<td>".$rw['qualification']."</td>");
-                        echo("<td>".$rw['experience']."</td>");
-                        echo("<td>".$rw['speciality']."</td>");
-                        echo("<td><button class='btn btn-danger' type='submit' name='bdelete' value=".$rw['docid'].">Delete Data</button></td>");
-                        echo("<td><button class='btn btn-success' type='submit' name='bupdate' value=".$rw['docid'].">Update Data</button></td>");
+                        echo("<td>".$rw['apptime']."</td>");
+                        echo("<td>".$rw['remark']."</td>");
+                        echo("<td>".$rw['status']."</td>");
+                        echo("<td><button class='btn btn-danger' type='submit' name='bdelete' value=".$rw['appid'].">Delete Data</button></td>");
+                        echo("<td><button class='btn btn-success' type='submit' name='bupdate' value=".$rw['appid'].">Update Data</button></td>");
                         echo("</tr>");
                         $count++;
                     }
                     ?>
                     </tbody>
-                   
-                   
-                    
                     </table>
-                    <span>Total Appointments:<?php echo($count)?></span>
+                    <span>Total Appointmenta:<?php echo($count)?></span>
                     </div>
                   </div>
             </section>       
@@ -105,10 +96,7 @@
     </form>
     <?php include("footer.php"); ?>
    </div>
-
    <?php include("jslink.php"); ?>
-   
-
 </body>
 <script>
 $(document).ready(function(){
