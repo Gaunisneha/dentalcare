@@ -50,6 +50,7 @@
         <main id="main" class="main">
             <section class="section dashboard">
                   <div class="row">
+            
                     <div class="col-md-11">
                         <h2 class="text-center">Register Data</h2>
                     </div>
@@ -58,11 +59,19 @@
                     </div> -->
                   </div>
                   <div class="row">
+                  <div class="col-md-11">
+                         <input type="text" placeholder="Search" id="myInput" class="form-control"  >
+                    </div>
+                    <div class="row">
                     <div class="12">
                         <table class="table table-bordered">
+                            <thead>
                     <tr>
                         <th>USERID</th><th>DATE</th><th>USERNAME</th><th>CONTACTNO</th><th>EMAILID</th><th>PASSWORD</th><th>DELETE</th><th>UPDATE</th>
                     </tr>
+                            </thead>
+                            <tbody id="myTable">
+                    
                     <?php 
                     $query="select * from registration  ";
                     $tb=$dc->gettable($query);
@@ -78,19 +87,31 @@
                         echo("<td><button class='btn btn-danger' type='submit' name='bdelete' value=".$rw['regid'].">Delete Data</button></td>");
                         echo("<td><button class='btn btn-success' type='submit' name='bupdate' value=".$rw['regid'].">Update Data</button></td>");
                         echo("</tr>");
+                        
                     }
                     ?>
-                    
+                    </tbody>
                     </table>
                     </div>
                   </div>
             </section>       
 </main>
     </form>
+     <?php include("footer.php"); ?>
    </div>
-   <?php include("footer.php"); ?>
+  
    <?php include("jslink.php"); ?>
    
 
 </body>
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 </html>

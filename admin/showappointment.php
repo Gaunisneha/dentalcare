@@ -63,7 +63,7 @@
                         <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>appID</th><th>DATE</th><th>patientid</th><th>docid</th><th>time</th><th>remark</th><th>status</th><th>DELETE</th><th>UPDATE</th>
+                        <th>APPID</th><th>DATE</th><th>Patientid</th><th>Docid</th><th>Time</th><th>Remark</th><th>Status</th><th>DELETE</th><th>UPDATE</th>
                     </tr>
                     </thead>
                     <tbody id="myTable">

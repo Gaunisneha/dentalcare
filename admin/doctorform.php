@@ -140,7 +140,7 @@
                 </div>
 
                 <div class="row-md-3">
-                    <label class="col-md-3 col-form-label">speciality</label>
+                    <label class="col-md-3 col-form-label">Speciality</label>
                     <div class="col-md-9">
                     <input type="text" class="form-control" name="speciality" value='<?php echo $speciality?>'>
                     </div>

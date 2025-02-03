@@ -60,6 +60,7 @@
                     <div class="col-md-11">
                          <input type="text" placeholder="Search" id="myInput" class="form-control"  >
                     </div>
+                    <br>
                     <div class="col-md-1">
                          <input type="submit" class="btn btn-success" name="bnew" value="new">
                     </div>
