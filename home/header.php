@@ -25,7 +25,7 @@
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-person-circle"></i> User</a>
                     <div class="dropdown-menu m-0">
                         <a href="../home/mainhome.php">Patient</a><br>
-                        <a href="#">Doctor</a><br>
+                        <a href="../doctor/doctorhome.php">Doctor</a><br>
                         <a href="../admin/adminhome.php">Admin</a>
                     </div>
                 </div>

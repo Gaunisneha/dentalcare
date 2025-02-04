@@ -1,10 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<?php 
+    session_start();
+    include ("../class/dataclass.php");
+   
+     ?>
+     <?php 
+     $appfor="";
+     $docid="";
+     $name="";
+     $emailid="";
+     $appdate="";
+     $apptime="";
+     $remark="";
+     $query="";
+     $msg="";
+     $dc=new dataclass();
+     ?>
+     <?php 
+     if(isset($_POST['btn1'])) 
+     {
+        $appfor=$_POST['appfor'];
+        $docid=$_POST['docid'];
+        $patientname=$_POST['patientname'];
+        $emailid=$_POST['emailid'];
+        $appdate=date('y-m-d');
+        $apptime=time('h:i:s');
+        $remark=$_POST['remark'];
+        
+        $query="INSERT INTO `appointment`(`appid`, `appfor`, `docid`, `patientname`,`emailid`, `appdate`, `apptime`, `remark`, `status`) VALUES ('$appfor','$docid','$patientname','$emailid','$appdate','$','[value-8]')";
+        $result=$dc->insertrecord($query);
+        if($result)
+        {
+            // $_SESION['username']=$username;
+            // header('location:')
+             $msg="registration successfull!!";
+        }
+        else
+        {
+            $msg="registration unsuccessfull!!";
+            die("error".mysqli_error($dc));
+        }
+     }
+
+     ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+
     <?php   include("csslink.php") ?>
+    
 </head>
 <body>
 <?php   include("topbar.php") ?> 
@@ -22,7 +68,7 @@
                 <div class="col-lg-6">
                     <div class="appointment-form h-100 d-flex flex-column justify-content-center text-center p-5 wow zoomIn" data-wow-delay="0.6s">
                         <h1 class="text-white mb-4">Make Appointment</h1>
-                        <form>
+                        <form method="post" action="#">
                             <div class="row g-3">
                                 <div class="col-12 col-sm-6">
                                     <select class="form-select bg-light border-0" style="height: 55px;">
@@ -33,11 +79,22 @@
                                     </select>
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <select class="form-select bg-light border-0" style="height: 55px;">
-                                        <option selected>Select Doctor</option>
-                                        <option value="1">Doctor 1</option>
-                                        <option value="2">Doctor 2</option>
-                                        <option value="3">Doctor 3</option>
+                                    <select name="doctors" class="form-select bg-light border-0" style="height: 55px;">
+                                        <?php
+                                        $query1="select docid docname from appoinment";
+                                        $tb=$dc->gettable($query1);
+                                        while($rw=mysqli_fetch_array($tb))
+                                        {
+                                            if($docid==$rw['docid'])
+                                            {
+                                                echo"<option selected value=".$rw['docid'].">".$rw['docname']."</option>";
+                                            }
+                                            else
+                                            {
+                                                echo"<option value=".$rw['docid'].">">.$rw['docname']."</option>";
+                                            }
+                                        }
+                                        ?>
                                     </select>
                                 </div>
                                 <div class="col-12 col-sm-6">
@@ -61,7 +118,11 @@
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <button class="btn btn-dark w-100 py-3" type="submit">Make Appointment</button>
+                                    <input type="textarea" class="form-control bg-light border-0" placeholder="Your Remark" style="height: 55px;">
+                                </div>
+                                
+                                <div class="col-12">
+                                    <input class="btn btn-dark w-100 py-3" type="submit" value="Make Appointment">
                                 </div>
                             </div>
                         </form>
@@ -89,3 +150,5 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+
+
