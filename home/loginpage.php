@@ -77,7 +77,7 @@
      }
     }
      ?>
-     <?phpinclude("csslink.php") ?>
+     <?php include("csslink.php") ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/loginstyle.css">
@@ -99,8 +99,15 @@
      $username=$_POST['username'];
      $password=$_POST['password'];
     //  $emailid=$_POST['emailid'];
+    $query = "SELECT * FROM registration WHERE username='$username' AND password='$password'";
      $result=$dc->getrow($query);
-     
+     if ($result) {
+        $_SESSION['username'] = $username;
+        header("Location: mainhome.php");
+        exit();
+    } else {
+        $msg = "Invalid username or password!";
+    }
   }
   ?>
   <body>
