@@ -69,6 +69,7 @@
                     <div class="12">
                         <table class="table table-bordered">
                             <thead>
+                               
                     <tr>
                         <th>DENTISTID</th><th>DENTISTNAME</th><th>CONTACTNO</th><th>EMAILID</th><th>QUALIFICATION</th><th>EXEPERIENCE</th><th>SPECIALIZATION</th><th>DELETE</th><th>UPDATE</th>
                     </tr>
