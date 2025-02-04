@@ -165,7 +165,7 @@
         </div>
         <div class="toggle-box">
             <div class="toggle-panel toggle-left">
-                <?php $_SESION['username']=$username; ?>
+                <?php $_SESSION['username']=$username; ?>
                 <h2 class="pt-3"><?php echo $username;?></h2> 
                 <h1>Welcome to<br> Dental Care!</h1>
                 <p>Don't have an account?</p>
