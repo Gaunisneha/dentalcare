@@ -22,9 +22,46 @@
         $regdate=date('y-m-d');
         $username=$_POST['username'];
         $password=$_POST['password'];
+        $cpassword=$_POST['cpassword'];
         $emailid=$_POST['emailid'];
         $contactno=$_POST['contactno'];
-        $query="INSERT INTO `registration`( `regdate`, `username`, `password`, `emailid`, `contactno`) VALUES ('$regdate','$username','$password','$emailid','$contactno')";
+        if (empty($username) ||  empty($password) || empty($emailid) || empty($contactno)) {
+            echo '<script>
+                    alert("Please fill out all required fields.");
+                     window.location="loginpage.php";
+                  </script>';
+            exit();
+        }
+            elseif (!preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/", $password)) {
+                echo '<script>
+                    alert("Password is invalid. It must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character");
+                     window.location="loginpage.php";
+                  </script>';
+            exit();
+            
+        } elseif (!filter_var($emailid, FILTER_VALIDATE_EMAIL)) {
+            echo '<script>
+                    alert("Invalid email format.");
+                     window.location="loginpage.php";
+                  </script>';
+            exit();
+        } elseif (!preg_match("/^[0-9]{10}$/", $contactno)) {
+            echo '<script>
+                    alert("Invalid contact number. It should be 10 digits.");
+                     window.location="loginpage.php";
+                  </script>';
+            exit();
+        }
+        
+        if($cpassword!=$password){
+            '<script>
+            echo "password does not match!!!";
+            window.location="loginpage.php";
+            </script>';
+        }
+        else{
+        
+        $query="INSERT INTO `registration`( `regdate`, `username`, `password`, `emailid`, `contactno`) VALUES (NOW(),'$username','$password','$emailid','$contactno')";
         $result=$dc->insertrecord($query);
         if($result)
         {
@@ -35,10 +72,10 @@
         else
         {
             $msg="registration unsuccessfull!!";
-            die("error".mysqli_error($dc));
+            die("error".mysqli_error($dc->conn));
         }
      }
-
+    }
      ?>
      <?phpinclude("csslink.php") ?>
     <meta charset="utf-8">
@@ -59,9 +96,11 @@
   <?php
   if(isset($_POST['btn']))
   {
+     $username=$_POST['username'];
      $password=$_POST['password'];
-     $emailid=$_POST['emailid'];
+    //  $emailid=$_POST['emailid'];
      $result=$dc->getrow($query);
+     
   }
   ?>
   <body>
@@ -70,11 +109,11 @@
             <form action="" method="POST">
                 <h1>Sign In</h1>
                 <div class="input-box">
-                    <input type="text" name="username" id="username" placeholder="Username" required>
+                    <input type="text" name="username" id="username" placeholder="Username">
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    <input type="password" name="password" id="password" placeholder="Password">
                     <i class='bx bxs-lock-alt'></i>
                 </div>
                 <div class="forgot-link">
@@ -95,23 +134,23 @@
             <form action="#" method="POST">
                 <h1>Sign Up</h1>
                 <div class="input-box">
-                    <input type="text" name="username" id="username" placeholder="Username" required>
+                    <input type="text" name="username" id="username" placeholder="Username">
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
-                    <input type="email" name="emailid" id="emailid" placeholder="Email" required>
+                    <input type="email" name="emailid" id="emailid" placeholder="Email">
                     <i class='bx bxs-envelope'></i>
                 </div>
                 <div class="input-box">
-                    <input type="text" name="contactno" id="contactno" placeholder="Contact" required>
+                    <input type="text" name="contactno" id="contactno" placeholder="Contact">
                     <i class='bx bxs-phone'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" name="password" id="password" placeholder="Password" required>
+                    <input type="password" name="password" id="password" placeholder="Password">
                     <i class='bx bxs-lock-alt'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" name="cpassword" id="cpassword" placeholder="Confirm-Password" required>
+                    <input type="password" name="cpassword" id="cpassword" placeholder="Confirm-Password">
                     <i class='bx bxs-lock-alt'></i>
                 </div>
                 <input type="submit" name="btn1" value="Sign Up" class="btn"></input>
