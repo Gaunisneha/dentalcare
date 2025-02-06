@@ -48,7 +48,11 @@
             <!-- Sale & Revenue End -->
 
 
+<<<<<<< HEAD
             <!-- Sales Chart Start
+=======
+            <!-- Sales Chart Start -->
+>>>>>>> bf3a71c688c5b7cc6cf989eb125c042d4e290d4c
             <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-12 col-xl-6">
@@ -71,7 +75,11 @@
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
             Sales Chart End -->
+=======
+            <!-- Sales Chart End -->
+>>>>>>> bf3a71c688c5b7cc6cf989eb125c042d4e290d4c
 
               <!-- Recent Sales Start -->
               <div class="container-fluid pt-4 px-4">
