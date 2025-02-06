@@ -91,7 +91,7 @@
                                             }
                                             else
                                             {
-                                                echo"<option value=".$rw['docid'].">">.$rw['docname']."</option>";
+                                                echo"<option value=".$rw['docid'].">".$rw['docname']."</option>";
                                             }
                                         }
                                         ?>

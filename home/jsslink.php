@@ -13,3 +13,4 @@
     <script src="lib/twentytwenty/jquery.event.move.js"></script>
     <script src="lib/twentytwenty/jquery.twentytwenty.js"></script>
     <script src="js/main.js"></script>
+   

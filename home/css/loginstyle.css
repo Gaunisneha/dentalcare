@@ -79,6 +79,7 @@ form{
     top: 50%;
     transform: translateY(-50%);   
 }
+
 .forgot-link{
     margin: -15px 0 15px;
 
@@ -104,7 +105,7 @@ form{
     font-size: 14.5px;
     margin: 15px 0;
 }
-.social-icons{
+/* .social-icons{
     display: flex;
     justify-content: center;
 }
@@ -118,7 +119,7 @@ form{
     color: #333;
     text-decoration: none;
     margin: 0 8px;
-}
+} */
 .toggle-box{
     position: absolute;
     width: 100%;

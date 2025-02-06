@@ -50,7 +50,7 @@ $conn=mysqli_connect("localhost","root","","dental_db");
     <form action="#" method="POST">
 <div class="wrapper">
         <div class="logo">
-            <img src="../images/adminimg.jpeg" alt="">
+            <img src="img/adminimg.jpeg" alt="">
         </div>
         <div class="text-center mt-4 name">
             ADMIN LOGIN
