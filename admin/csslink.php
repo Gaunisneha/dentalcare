@@ -19,8 +19,5 @@
 
 <!-- Template Stylesheet -->
 <link href="css/style.css" rel="stylesheet">
-<<<<<<< HEAD
 <!-- <link href="css/style1.css" rel="stylesheet"> -->
-=======
 <link href="css/style1.css" rel="stylesheet">
->>>>>>> bf3a71c688c5b7cc6cf989eb125c042d4e290d4c
