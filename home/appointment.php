@@ -4,7 +4,7 @@
 <?php 
     session_start();
     include ("../class/dataclass.php");
-   
+     
      ?>
      <?php 
      $appfor="";
@@ -15,6 +15,8 @@
      $apptime="";
      $remark="";
      $query="";
+     $query1="";
+     $query2="";
      $msg="";
      $dc=new dataclass();
      ?>
@@ -22,28 +24,28 @@
      if(isset($_POST['btn1'])) 
      {
         $appfor=$_POST['appfor'];
-        $docid=$_POST['docid'];
+        $docid=$_POST['doctors'];
         $patientname=$_POST['patientname'];
         $emailid=$_POST['emailid'];
-        $appdate=date('y-m-d');
-        $apptime=time('h:i:s');
+        $appdate=$_POST['appdate'];
+        $apptime=$_POST['apptime'];
         $remark=$_POST['remark'];
         
-        $query="INSERT INTO `appointment`(`appid`, `appfor`, `docid`, `patientname`,`emailid`, `appdate`, `apptime`, `remark`, `status`) VALUES ('$appfor','$docid','$patientname','$emailid','$appdate','$','[value-8]')";
+        $query="INSERT INTO `appointment`(`appfor`, `docid`, `patientname`,`emailid`, `appdate`, `apptime`, `remark`, `status`) VALUES ('$appfor','$docid','$patientname','$emailid','$appdate','$apptime','$remark','Pending')";
         $result=$dc->insertrecord($query);
+
         if($result)
         {
             // $_SESION['username']=$username;
             // header('location:')
-             $msg="registration successfull!!";
+             $msg="Registration successfull!!";
         }
         else
         {
-            $msg="registration unsuccessfull!!";
+            $msg="Registration unsuccessfull!!";
             die("error".mysqli_error($dc));
         }
      }
-
      ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -71,23 +73,39 @@
                         <form method="post" action="#">
                             <div class="row g-3">
                                 <div class="col-12 col-sm-6">
-                                    <select class="form-select bg-light border-0" style="height: 55px;">
-                                        <option selected>Select A Service</option>
-                                        <option value="1">Service 1</option>
+                                    <select name="appfor" class="form-select bg-light border-0" style="height: 55px;">
+                                        <option selected>Select Service</option>
+                                        <?php
+                                        $query2="select serviceid,servicename from services ";
+                                        $tb=$dc->gettable($query2);
+                                        while($rw=mysqli_fetch_array($tb))
+                                        {
+                                            if($docid==$rw['serviceid'])
+                                            {
+                                                echo"<option value=".$rw['serviceid'].">".$rw['servicename']."</option>";
+                                            }
+                                            else
+                                            {
+                                                echo"<option value=".$rw['serviceid'].">".$rw['servicename']."</option>";
+                                            }
+                                        }
+                                        ?>
+                                        <!-- <option value="1">Service 1</option>
                                         <option value="2">Service 2</option>
-                                        <option value="3">Service 3</option>
+                                        <option value="3">Service 3</option> -->
                                     </select>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <select name="doctors" class="form-select bg-light border-0" style="height: 55px;">
+                                    <option selected>Select Doctor</option>
                                         <?php
-                                        $query1="select docid docname from appoinment";
+                                        $query1="select docid,docname from dentist ";
                                         $tb=$dc->gettable($query1);
                                         while($rw=mysqli_fetch_array($tb))
                                         {
                                             if($docid==$rw['docid'])
                                             {
-                                                echo"<option selected value=".$rw['docid'].">".$rw['docname']."</option>";
+                                                echo"<option value=".$rw['docid'].">".$rw['docname']."</option>";
                                             }
                                             else
                                             {
@@ -98,32 +116,33 @@
                                     </select>
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="text" class="form-control bg-light border-0" placeholder="Your Name" style="height: 55px;">
+                                    <input type="text" class="form-control bg-light border-0" name="patientname" placeholder="Your Name" style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <input type="email" class="form-control bg-light border-0" placeholder="Your Email" style="height: 55px;">
+                                    <input type="email" class="form-control bg-light border-0" name="emailid" placeholder="Your Email" style="height: 55px;">
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="date" id="date1" data-target-input="nearest">
                                         <input type="text"
                                             class="form-control bg-light border-0 datetimepicker-input"
-                                            placeholder="Appointment Date" data-target="#date1" data-toggle="datetimepicker" style="height: 55px;">
+                                            placeholder="Appointment Date" data-target="#date1" name="appdate" data-toggle="datetimepicker" style="height: 55px;">
                                     </div>
                                 </div>
                                 <div class="col-12 col-sm-6">
                                     <div class="time" id="time1" data-target-input="nearest">
                                         <input type="text"
                                             class="form-control bg-light border-0 datetimepicker-input"
-                                            placeholder="Appointment Time" data-target="#time1" data-toggle="datetimepicker" style="height: 55px;">
+                                            placeholder="Appointment Time" data-target="#time1" name="apptime"  data-toggle="datetimepicker" style="height: 55px;">
                                     </div>
                                 </div>
                                 <div class="col-12">
-                                    <input type="textarea" class="form-control bg-light border-0" placeholder="Your Remark" style="height: 55px;">
+                                    <input type="textarea" class="form-control bg-light border-0" name="remark" placeholder="Your Remark" style="height: 55px;">
                                 </div>
                                 
                                 <div class="col-12">
-                                    <input class="btn btn-dark w-100 py-3" type="submit" value="Make Appointment">
+                                    <input class="btn btn-dark w-100 py-3" name="btn1" type="submit" value="Make Appointment">
                                 </div>
+                                <?php echo $msg ?>
                             </div>
                         </form>
                     </div>
@@ -133,8 +152,10 @@
     </div>
     <!-- Appointment End -->
     <?php   include("footer.php") ?> 
+    <?php   include("jsslink.php") ?> 
+
      <!-- JavaScript Libraries -->
-     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+     <!-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/wow/wow.min.js"></script>
     <script src="lib/easing/easing.min.js"></script>
@@ -144,10 +165,10 @@
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
     <script src="lib/twentytwenty/jquery.event.move.js"></script>
-    <script src="lib/twentytwenty/jquery.twentytwenty.js"></script>
+    <script src="lib/twentytwenty/jquery.twentytwenty.js"></script> -->
 
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <!-- <script src="js/main.js"></script> -->
 </body>
 </html>
 

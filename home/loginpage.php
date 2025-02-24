@@ -4,7 +4,7 @@
     <?php 
     session_start();
     include ("../class/dataclass.php");
-   
+
      ?>
      <?php 
      $regdate="";
@@ -146,22 +146,22 @@
                 <h1>Sign Up</h1>
                 <div class="input-box">
                     <input type="text" name="username" id="username" placeholder="Username"  onchange="onlyalpha(this,lusername)" onkeyup="onlyalpha(this,lusername)">
-                    <span id="lusername"></span>
+                    <span class="errmsg" id="lusername"></span>
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
                     <input type="email" name="emailid" id="emailid" placeholder="Email" onchange="validateEmail(this,lemail)" onkeyup="validateEmail(this,lemail)">
-                    <span id="lemail"></span>
+                    <span class="errmsg" id="lemail"></span>
                     <i class='bx bxs-envelope'></i>
                 </div>
                 <div class="input-box">
                     <input type="text" name="contactno" id="contactno" placeholder="Contact" onchange="validateContactNo(this,lcontact)" onkeyup="validateContactNo(this,lcontact)">
-                    <span id="lcontact"></span>
+                    <span class="errmsg" id="lcontact"></span>
                     <i class='bx bxs-phone'></i>
                 </div>
                 <div class="input-box">
                     <input type="password" name="password" id="password" placeholder="Password" onchange="checklength(this,lpassword,6,10)" onkeyup="checklength(this,lpassword,6,10)" >
-                    <span id="lpassword"></span>
+                    <span class="errmsg" id="lpassword"></span>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
                 <div class="input-box">

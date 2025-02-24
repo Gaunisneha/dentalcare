@@ -232,3 +232,10 @@ form{
             font-size: 30px;
         }
     }
+
+    .errmsg{
+        color: red;
+        font-size: 14px;
+        margin-left: 10px;
+    }
+    
