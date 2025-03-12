@@ -4,75 +4,50 @@
     <?php 
     session_start();
     include ("../class/dataclass.php");
-
+   
      ?>
      <?php 
+     $regid="";
      $regdate="";
      $username="";
      $password="";
      $emailid="";
      $contactno="";
      $query="";
+     $query2="";
      $msg="";
      $dc=new dataclass();
      ?>
      <?php 
      if(isset($_POST['btn1'])) 
      {
-        $regdate=date('y-m-d');
+        $regdate=date('Y-m-d');
         $username=$_POST['username'];
         $password=$_POST['password'];
         $cpassword=$_POST['cpassword'];
         $emailid=$_POST['emailid'];
         $contactno=$_POST['contactno'];
-        // if (empty($username) ||  empty($password) || empty($emailid) || empty($contactno)) {
-        //     echo '<script>
-        //             alert("Please fill out all required fields.");
-        //              window.location="loginpage.php";
-        //           </script>';
-        //     exit();
-        // }
-        //     elseif (!preg_match("/^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])[A-Za-z0-9!@#$%^&*]{8,}$/", $password)) {
-        //         echo '<script>
-        //             alert("Password is invalid. It must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one number, and one special character");
-        //              window.location="loginpage.php";
-        //           </script>';
-        //     exit();
-            
-        // } elseif (!filter_var($emailid, FILTER_VALIDATE_EMAIL)) {
-        //     echo '<script>
-        //             alert("Invalid email format.");
-        //              window.location="loginpage.php";
-        //           </script>';
-        //     exit();
-        // } elseif (!preg_match("/^[0-9]{10}$/", $contactno)) {
-        //     echo '<script>
-        //             alert("Invalid contact number. It should be 10 digits.");
-        //              window.location="loginpage.php";
-        //           </script>';
-        //     exit();
-        // }
-        
-        // if($cpassword!=$password){
-        //     '<script>
-        //     echo "password does not match!!!";
-        //     window.location="loginpage.php";
-        //     </script>';
-        // }
-        // else{
-        
-        $query="INSERT INTO `registration`( `regdate`, `username`, `password`, `emailid`, `contactno`) VALUES (NOW(),'$username','$password','$emailid','$contactno')";
+        $filename=$_FILES['image']['name'];
+        $tmpname=$_FILES['image']['tmp_name'];
+        $regid = $dc->primarykey("SELECT IFNULL(MAX(regid),0) + 1 FROM registration");
+        $query="INSERT INTO `registration`( `regid`,`regdate`, `username`, `password`, `emailid`, `contactno`,`image`) VALUES ('$regid','$regdate','$username','$password','$emailid','$contactno','$filename')";
         $result=$dc->insertrecord($query);
         if($result)
         {
-            // $_SESION['username']=$username;
+            // $_SESSION['username']=$username;
             // header('location:')
+            if (!is_dir('profileimages')) {
+                mkdir('profileimages', 0777, true);
+            }
+            move_uploaded_file($tmpname,'profileimages/'.$filename);
              $msg="registration successfull!!";
+             $query2="insert into profile(profileid) values('$regid')";
+             $result=$dc->insertrecord($query2);
         }
         else
         {
             $msg="registration unsuccessfull!!";
-            die("error".mysqli_error($dc->conn));
+            
         }
      }
     // }
@@ -103,6 +78,7 @@
     $query = "SELECT * FROM registration WHERE username='$username' AND password='$password'";
      $result=$dc->getrow($query);
      if ($result) {
+        $_SESSION['regid'] = $result['regid']; 
         $_SESSION['username'] = $username;
         header("Location: mainhome.php");
         exit();
@@ -111,6 +87,15 @@
     }
   }
   ?>
+  <script>
+    function formvalidation(){
+        var result=true;
+        if(lusername.innerHTML=="" && lpassword.innerHTML==""){
+            result=false;
+        }
+        return result;
+    }
+    </script>
   <body>
     <div class="container">
         <div class="form-box login">
@@ -142,31 +127,36 @@
             </form>
         </div>
         <div class="form-box register">
-            <form action="#" method="POST">
+            <form action="#" method="POST" enctype="multipart/form-data" >
                 <h1>Sign Up</h1>
                 <div class="input-box">
                     <input type="text" name="username" id="username" placeholder="Username"  onchange="onlyalpha(this,lusername)" onkeyup="onlyalpha(this,lusername)">
-                    <span class="errmsg" id="lusername"></span>
+                    <span id="lusername"></span>
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
                     <input type="email" name="emailid" id="emailid" placeholder="Email" onchange="validateEmail(this,lemail)" onkeyup="validateEmail(this,lemail)">
-                    <span class="errmsg" id="lemail"></span>
+                    <span id="lemail"></span>
                     <i class='bx bxs-envelope'></i>
                 </div>
                 <div class="input-box">
                     <input type="text" name="contactno" id="contactno" placeholder="Contact" onchange="validateContactNo(this,lcontact)" onkeyup="validateContactNo(this,lcontact)">
-                    <span class="errmsg" id="lcontact"></span>
+                    <span id="lcontact"></span>
                     <i class='bx bxs-phone'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" name="password" id="password" placeholder="Password" onchange="checklength(this,lpassword,6,10)" onkeyup="checklength(this,lpassword,6,10)" >
-                    <span class="errmsg" id="lpassword"></span>
+                    <input type="password" name="password" id="password" placeholder="Password" onkeyup="validatePassword(this,lpassword)" >
+                    <span id="lpassword" class="error" ></span>
                     <i class='bx bxs-lock-alt'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" name="cpassword" id="cpassword" placeholder="Confirm-Password">
+                    <input type="password" name="cpassword" id="cpassword" placeholder="Confirm-Password"  onkeyup="validateConfirmPassword()">
+                    <span id="lcpassword" class="error" ></span>
                     <i class='bx bxs-lock-alt'></i>
+                </div>
+                <div class="input-box">
+                    <input type="file" name="image" id="image" placeholder="image">
+                    <i class='bx bxs-lock-alt'></i> 
                 </div>
                 <input type="submit" name="btn1" value="Sign Up" class="btn"></input>
             </form>
@@ -174,7 +164,7 @@
         <div class="toggle-box">
             <div class="toggle-panel toggle-left">
                 <?php $_SESSION['username']=$username; ?>
-                <h2 class="pt-3"><?php echo $username;?></h2> 
+                <h2 class="pt-3"><?php echo $username;?></h2>
                 <h1>Welcome to<br> Dental Care!</h1>
                 <p>Don't have an account?</p>
                 <button class="btn register-btn">Sign Up</button>
@@ -189,7 +179,7 @@
     </div>
     
     <script src="js/login.js"></script>
-    <script src="../validation.js"></script>
+    <script src="../validation.js" defer></script>
     
   </body>
 </html>
