@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title><?php 
-    session_start();
+<?php 
+    
     include ("../class/dataclass.php");
-   
+     
      ?>
      <?php 
      $contactdate="";
@@ -18,6 +16,7 @@
      $msg="";
      $dc=new dataclass();
      ?>
+    
      <?php 
      if(isset($_POST['btn1'])) 
      {
@@ -26,23 +25,22 @@
         $emailid=$_POST['emailid'];
         $contactno=$_POST['contactno'];
         $details=$_POST['details'];
-        $query="INSERT INTO `contactus`(`contactid`, `contactdate`, `fullname`, `emailid`, `contactno`, `details`, `status`) VALUES ('$contactdate','$fullname','$emailid','$contactno','$details','pending')";
+        $query="INSERT INTO `contactus`(`contactdate`, `fullname`, `emailid`, `contactno`, `details`, `status`) VALUES ('$contactdate','$fullname','$emailid','$contactno','$details','pending')";
         $result=$dc->insertrecord($query);
         if($result)
         {
-            // $_SESION['username']=$username;
-            // header('location:')
-             $msg="registration successfull!!";
+            
+             $msg="Contact successfull!!";
         }
         else
         {
             $msg="registration unsuccessfull!!";
-            // die("error".mysqli_error($dc));
+            
         }
+        
      }
 
      ?>
-    
     <?php   include("csslink.php") ?>
 </head>
 <body>
@@ -100,13 +98,11 @@
                                 <input class="btn btn-primary w-100 py-3" name="btn1" type="submit" value="Send Message">
                             </div>
                         </div>
+                        <label class="form-lable" ><?php echo $msg ?></label>
                     </form>
                 </div>
                 <div class="col-xl-4 col-lg-12 wow slideInUp" data-wow-delay="0.6s">
-                    <iframe class="position-relative rounded w-100 h-100"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3001156.4288297426!2d-78.01371936852176!3d42.72876761954724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4ccc4bf0f123a5a9%3A0xddcfc6c1de189567!2sNew%20York%2C%20USA!5e0!3m2!1sen!2sbd!4v1603794290143!5m2!1sen!2sbd"
-                        frameborder="0" style="min-height: 400px; border:0;" allowfullscreen="" aria-hidden="false"
-                        tabindex="0"></iframe>
+                <div style="width: 100%"><iframe width="100%" height="600" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=ssagrawal%20navsari+(Dental%20Health%20Care)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a href="https://www.gps.ie/collections/drones/">drones ireland</a></iframe></div>
                 </div>
             </div>
         </div>

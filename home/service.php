@@ -68,8 +68,8 @@
                 <div class="col-lg-5 service-item wow zoomIn" data-wow-delay="0.9s">
                     <div class="position-relative bg-primary rounded h-100 d-flex flex-column align-items-center justify-content-center text-center p-4">
                         <h3 class="text-white mb-3">Make Appointment</h3>
-                        <p class="text-white mb-3">Clita ipsum magna kasd rebum at ipsum amet dolor justo dolor est magna stet eirmod</p>
-                        <h2 class="text-white mb-0">+012 345 6789</h2>
+                        <p class="text-white mb-3">The best dentists offer a full spectrum of dental services, including preventive, restorative, and cosmetic treatments. Whether you need a simple cleaning or complex dental work, these professionals have you covered.</p>
+                        <h2 class="text-white mb-0">+91 8754875692</h2>
                     </div>
                 </div>
             </div>

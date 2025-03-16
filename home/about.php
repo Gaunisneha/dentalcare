@@ -17,8 +17,10 @@
                         <h5 class="position-relative d-inline-block text-primary text-uppercase">About Us</h5>
                         <h1 class="display-5 mb-0">The World's Best Dental Clinic That You Can Trust</h1>
                     </div>
-                    <h4 class="text-body fst-italic mb-4">Diam dolor diam ipsum sit. Clita erat ipsum et lorem stet no lorem sit clita duo justo magna dolore</h4>
-                    <p class="mb-4">Tempor erat elitr rebum at clita. Diam dolor diam ipsum et tempor sit. Aliqu diam amet diam et eos labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor eirmod magna dolore erat amet</p>
+                    <h4 class="text-body fst-italic mb-4">A good dental website is user-friendly, informative, and professional, making it easier for patients to find the care they need</h4>
+                    <p class="mb-4">Discover the best dentists near you with our comprehensive guide. Find top-rated dental professionals offering preventive, restorative, and cosmetic services to ensure your oral health and a bright smile. Start your search today and maintain your healthy smile with confidence.
+
+</p>
                     <div class="row g-3">
                         <div class="col-sm-6 wow zoomIn" data-wow-delay="0.3s">
                             <h5 class="mb-3"><i class="fa fa-check-circle text-primary me-3"></i>Award Winning</h5>
@@ -32,9 +34,12 @@
                     <a href="appointment.php" class="btn btn-primary py-3 px-5 mt-4 wow zoomIn" data-wow-delay="0.6s">Make Appointment</a>
                 </div>
                 <div class="col-lg-5" style="min-height: 500px;">
-                    <div class="position-relative h-100">
+                    <!-- <div class="position-relative h-100">
                         <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="img/about.jpg" style="object-fit: cover;">
-                    </div>
+                    </div> -->
+                    <video width="600" height="300" controls >
+                        <source src="0_Dentist_Dental_3840x2160.mp4" type="video/mp4">
+                    </video>
                 </div>
             </div>
         </div>

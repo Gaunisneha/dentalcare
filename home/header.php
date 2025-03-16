@@ -1,6 +1,9 @@
 <!DOCTYPE html>
  <html lang="en">
  <head>
+    <?php
+    // session_start();
+    ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
@@ -21,16 +24,27 @@
                 <a href="doctor.php" class="nav-item nav-link">Doctor</a>
                 <a href="service.php" class="nav-item nav-link">Service</a>
                 <a href="contact.php" class="nav-item nav-link">Contact</a>
+                <a href="profiletem.php" class="nav-item nav-link">Profile</a>
                 <div class="nav-item dropdown"> 
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-person-circle"></i> User</a>
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-person-circle"></i></a>
                     <div class="dropdown-menu m-0">
-                        <a href="../home/mainhome.php">Patient</a><br>
+                        <!-- <a href="../home/mainhome.php">Patient</a><br> -->
                         <a href="../doctor/doctorlogin.php">Doctor</a><br>
                         <a href="../admin/adminlogin.php">Admin</a>
                     </div>
                 </div>
             </div>
-            <a href="appointment.php" class="btn btn-primary py-2 px-4 ms-3">Appointment</a>
+            
+            <?php if(!isset($_SESSION['username'])){
+                ?>
+            <a href="loginpage.php" class="btn btn-primary py-2 px-4 ms-3">Login</a>
+            <?php 
+            }
+            else if (isset($_SESSION['username'])){
+                ?>
+                <a href="logout.php" class="btn btn-primary py-2 px-4 ms-3">Logout</a>
+                <?php
+            } ?>
         </div>
     </nav>
  </body>

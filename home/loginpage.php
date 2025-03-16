@@ -29,13 +29,12 @@
         $contactno=$_POST['contactno'];
         $filename=$_FILES['image']['name'];
         $tmpname=$_FILES['image']['tmp_name'];
-        $regid = $dc->primarykey("SELECT IFNULL(MAX(regid),0) + 1 FROM registration");
+        // $regid = $dc->primarykey("SELECT IFNULL(MAX(regid),0) + 1 FROM registration");
         $query="INSERT INTO `registration`( `regid`,`regdate`, `username`, `password`, `emailid`, `contactno`,`image`) VALUES ('$regid','$regdate','$username','$password','$emailid','$contactno','$filename')";
         $result=$dc->insertrecord($query);
         if($result)
         {
-            // $_SESSION['username']=$username;
-            // header('location:')
+     
             if (!is_dir('profileimages')) {
                 mkdir('profileimages', 0777, true);
             }
@@ -87,7 +86,7 @@
     }
   }
   ?>
-  <script>
+  <!-- <script>
     function formvalidation(){
         var result=true;
         if(lusername.innerHTML=="" && lpassword.innerHTML==""){
@@ -95,35 +94,35 @@
         }
         return result;
     }
-    </script>
+    </script> -->
   <body>
     <div class="container">
         <div class="form-box login">
-            <form action="" method="POST">
+            <form action="" method="POST" onsubmit="return validateLoginForm()">
                 <h1>Sign In</h1>
                 <div class="input-box">
+        <input type="text" name="username" id="username" placeholder="Username">
+        <span id="loginUsernameError" class="error"></span>
+        <i class='bx bxs-user'></i>
+    </div>
+    <div class="input-box">
+        <input type="password" name="password" id="password" placeholder="Password">
+        <span id="loginPasswordError" class="error"></span>
+        <i class='bx bxs-lock-alt'></i>
+    </div>
+                <!-- <div class="input-box">
                     <input type="text" name="username" id="username" placeholder="Username">
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
                     <input type="password" name="password" id="password" placeholder="Password">
                     <i class='bx bxs-lock-alt'></i>
-                </div>
-                <!-- <div class="forgot-password">
-                    <a href="#" onclick="forgotPassword()">Forgot Password?</a>
                 </div> -->
+
                 <div class="forgot-link">
-                    <a href="#" onclick="forgotPassword()" >Forgot Password?</a>
+                    <a href="forgotpass.php">Forgot Password?</a>
                 </div>
                 <input type="submit" value="Sign In" class="btn" name="btn">
-                <!-- <p>or sign in with social platforms</p>
-                <div class="social-icons">
-                    <a href="#"><i class='bx bxl-google'></i></a>
-                    <a href="#"><i class='bx bxl-facebook' ></i></a>
-                    <a href="#"><i class='bx bxl-instagram' ></i></a>
-                    <a href="#"><i class='bx bxl-linkedin' ></i></a>
-
-                </div> -->
             </form>
         </div>
         <div class="form-box register">
@@ -145,7 +144,8 @@
                     <i class='bx bxs-phone'></i>
                 </div>
                 <div class="input-box">
-                    <input type="password" name="password" id="password" placeholder="Password" onkeyup="validatePassword(this,lpassword)" >
+                    <input type="password" name="password" id="signup-password" placeholder="Password" onkeyup="validatePassword(this, document.getElementById('lpassword'))">
+                     <!-- onkeyup="validatePassword(this,lpassword)" > -->
                     <span id="lpassword" class="error" ></span>
                     <i class='bx bxs-lock-alt'></i>
                 </div>

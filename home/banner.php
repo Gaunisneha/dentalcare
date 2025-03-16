@@ -6,15 +6,15 @@
                         <h3 class="text-white mb-3">Opening Hours</h3>
                         <div class="d-flex justify-content-between text-white mb-3">
                             <h6 class="text-white mb-0">Mon - Fri</h6>
-                            <p class="mb-0"> 8:00am - 9:00pm</p>
+                            <p class="mb-0"> 8:00am - 10:00pm</p>
                         </div>
                         <div class="d-flex justify-content-between text-white mb-3">
                             <h6 class="text-white mb-0">Saturday</h6>
-                            <p class="mb-0"> 8:00am - 7:00pm</p>
+                            <p class="mb-0"> 8:00am - 10:00pm</p>
                         </div>
                         <div class="d-flex justify-content-between text-white mb-3">
                             <h6 class="text-white mb-0">Sunday</h6>
-                            <p class="mb-0"> closed</p>
+                            <p class="mb-0"> Closed</p>
                         </div>
                         <a class="btn btn-light" href="appointment.php">Appointment</a>
                     </div>
@@ -38,7 +38,7 @@
                 <div class="col-lg-4 wow zoomIn" data-wow-delay="0.6s">
                     <div class="bg-primary d-flex flex-column p-5" style="height: 300px;">
                         <h3 class="text-white mb-3">Make Appointment</h3>
-                        <p class="text-white">Ipsum erat ipsum dolor clita rebum no rebum dolores labore, ipsum magna at eos et eos amet.</p>
+                        <p class="text-white">Schedule your appointment today and experience the difference that a top-rated dental professional can make.</p>
                         <h2 class="text-white mb-0">+91 8754875692</h2>
                     </div>
                 </div>

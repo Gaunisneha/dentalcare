@@ -7,7 +7,7 @@
                     <div class="d-flex flex-column justify-content-start">
                          <a class="text-light mb-2" href="mainhome.php"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
                         <a class="text-light mb-2" href="about.php"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
-                        <a class="text-light mb-2" href="services.php"><i class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
+                        <a class="text-light mb-2" href="service.php"><i class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
                         <a class="text-light" href="contact.php"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
                     </div>
                 </div>
@@ -16,7 +16,7 @@
                     <div class="d-flex flex-column justify-content-start">
                         <a class="text-light mb-2" href="mainhome.php"><i class="bi bi-arrow-right text-primary me-2"></i>Home</a>
                         <a class="text-light mb-2" href="about.php"><i class="bi bi-arrow-right text-primary me-2"></i>About Us</a>
-                        <a class="text-light mb-2" href="services.php"><i class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
+                        <a class="text-light mb-2" href="service.php"><i class="bi bi-arrow-right text-primary me-2"></i>Our Services</a>
                         <a class="text-light" href="contact.php"><i class="bi bi-arrow-right text-primary me-2"></i>Contact Us</a>
                     </div>
                 </div>
@@ -42,7 +42,8 @@
         <div class="container">
             <div class="row g-0">
                 <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-md-0">&copy; <a class="text-white border-bottom" href="#">Your Site Name</a>. All Rights Reserved.</p>
+                    <p class="mb-md-0">&copy; <a class="text-white border-bottom" href="mainhome.php">Dental Health care
+                    </a>. All Rights Reserved.</p>
                 </div>
                 
             </div>

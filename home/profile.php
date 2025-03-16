@@ -1,80 +1,181 @@
-<?php
-include("../class/dataclass.php");
-
-if (isset($_POST['submit'])) {
-    $first_name = $_POST['first_name'];
-    $last_name = $_POST['last_name'];
-    $gender = $_POST['gender'];
-    $dob = $_POST['dob'];
-    $email = $_POST['email'];
-    $phone = $_POST['phone'];
-    $address = $_POST['address'];
-    $medical_history = $_POST['medical_history'];
-    $emergency_contact_name = $_POST['emergency_contact_name'];
-    $emergency_contact_phone = $_POST['emergency_contact_phone'];
-
-    // Create the SQL query
-    $query = "INSERT INTO patients (first_name, last_name, gender, dob, email, phone, address, medical_history, emergency_contact_name, emergency_contact_phone) 
-              VALUES ('$first_name', '$last_name', '$gender', '$dob', '$email', '$phone', '$address', '$medical_history', '$emergency_contact_name', '$emergency_contact_phone')";
-    
-    // Execute the query
-    $dc = new dataclass();
-    $result = $dc->insertrecord($query);
-
-    if ($result) {
-        echo "Patient profile created successfully!";
-    } else {
-        echo "Error: " . mysqli_error($dc);
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <?php include 'csslink.php'?>
+<?php 
+    session_start();
+    include ("../class/dataclass.php");
+   
+     ?> 
+     <?php 
+     $profileid="";
+     $firstname="";
+     $lastname="";
+     $address1="";
+     $address2="";
+     $cityid="";
+     $gender="";
+     $birthdate="";
+     $filename="";
+     $tmpname="";
+     $msg="";
+     $query="";
+     $dc=new dataclass();
+     ?>
+     <?php 
+     if(isset($_POST['btn1'])) 
+     {
+        $profileid=$_SESSION['regid'];
+        $firstname=$_POST['firstname'];
+        $lastname=$_POST['lastname'];
+        $address1=$_POST['address1'];
+        $address2=$_POST['address2'];
+        $cityid=$_POST['cityid'];
+        $gender=$_POST['gender'];
+        $birthdate=$_POST['birthdate'];
+        $filename=$_FILES['image']['name'];
+        $tmpname=$_FILES['image']['tmp_name'];
+        $query="update profile set firstname='$firstname',lastname='$lastname',address1='$address1',address2='$address2',cityid='$cityid',gender='$gender',birthdate='$birthdate',image='$filename' where profileid='$profileid'";
+        $result=$dc->updaterecord($query);
+        if($result)
+        {
+            move_uploaded_file($tmpname,'profileimages/'.$filename);
+             $msg="profile  successfull!!";
+        }
+        else
+        {
+            $msg="profile unsuccessfull!!";
+        }
+     }
+     ?>
+     <?php 
+     include("csslink.php") 
+     ?>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f9;
+      padding: 40px;
+    }
+    .form-container {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+    .form-label {
+      font-weight: bold;
+    }
+    .form-control {
+      border-radius: 8px;
+    }
+    .btn-submit {
+      border-radius: 8px;
+    }
+    .form-row {
+      margin-bottom: 1rem;
+    }
+    .heading
+    {
+      font-weight: 700;
+    }
+  </style>
 </head>
+
 <body>
-<form action="#" method="POST">
-    <label for="first_name">First Name:</label>
-    <input type="text" name="first_name" id="first_name" required><br>
+  <div class="container form-container">
+    <h3 class="mb-4 text-center  heading">Profile</h3>
+    <form method="POST" action="#" enctype="multipart/form-data">
+      <div class="row mb-2">
+        <label for="fullname"  class="col-sm-2 col-form-label form-label">First Name</label>
+        <div class="col-sm-10">
+          <input type="text"  class="form-control" id="firstname" placeholder="Enter Full Name" name="firstname" value="<?php echo ($firstname)?>"autofocus>
+        </div>
+      </div>
 
-    <label for="last_name">Last Name:</label>
-    <input type="text" name="last_name" id="last_name" required><br>
+      <div class="row mb-2">
+        <label for="fullname"  class="col-sm-2 col-form-label form-label">Last Name</label>
+        <div class="col-sm-10">
+          <input type="text"  class="form-control" id="lastname" placeholder="Enter Full Name" name="lastname" value="<?php echo ($lastname)?>">
+        </div>
+      </div>
 
-    <label for="gender">Gender:</label>
-    <select name="gender" id="gender" required>
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-        <option value="Other">Other</option>
-    </select><br>
+      <div class="row mb-2">
+        <label for="address" class="col-sm-2 col-form-label form-label">Address1</label>
+        <div class="col-sm-10">
+          <textarea class="form-control"  id="address1" rows="3" placeholder="Enter Address"  name="address1" value="<?php echo ($address1)?>" ></textarea>
+        </div>
+      </div>
 
-    <label for="dob">Date of Birth:</label>
-    <input type="date" name="dob" id="dob" required><br>
+      <div class="row mb-2">
+        <label for="address" class="col-sm-2 col-form-label form-label">Address2</label>
+        <div class="col-sm-10">
+          <textarea class="form-control"  id="address2" rows="3" placeholder="Enter Address"  name="address2" value="<?php echo ($address2)?>" ></textarea>
+        </div>
+      </div>
 
-    <label for="email">Email:</label>
-    <input type="email" name="email" id="email" required><br>
+      <div class="row mb-2">
+        <label for="cityid">CityId</label>
+        <select name="cityid" class="form-control">
+        <option selected>Select city</option>
+                                        <?php
+                                        $query1="select cityid,cityname from city ";
+                                        $tb=$dc->gettable($query1);
+                                        while($rw=mysqli_fetch_array($tb))
+                                        {
+                                            if($cityid==$rw['cityid'])
+                                            {
+                                                echo"<option value=".$rw['cityid'].">".$rw['cityname']."</option>";
+                                            }
+                                            else
+                                            {
+                                                echo"<option value=".$rw['cityid'].">".$rw['cityname']."</option>";
+                                            }
+                                        }
+                                        ?>
+        </select>
+      </div> 
 
-    <label for="phone">Phone Number:</label>
-    <input type="text" name="phone" id="phone" required><br>
+      <div class="row mb-2">
+        <label for="gender" class="col-sm-2 col-form-label form-label">Gender</label>
+        <div class="col-sm-10">
+          <select name="gender" class="form-select" id="gender">
+            <option selected>Choose Gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
 
-    <label for="address">Address:</label>
-    <textarea name="address" id="address"></textarea><br>
+      <div class="row mb-2">
+        <label for="birthdate" class="col-sm-2 col-form-label form-label">Birthdate</label>
+        <div class="col-sm-10">
+          <input  type="date" class="form-control" id="birthdate"  name="birthdate" value="<?php echo ($birthdate)?>" >
+        </div>
+      </div>
 
-    <label for="medical_history">Medical History:</label>
-    <textarea name="medical_history" id="medical_history"></textarea><br>
+      <div class="row mb-2">
+        <label for="image" class="col-sm-2 col-form-label form-label">Profile Image</label>
+        <div class="col-sm-10">
+          <input name="image" type="file" class="form-control" class="image">
+        </div>
+      </div>
 
-    <label for="emergency_contact_name">Emergency Contact Name:</label>
-    <input type="text" name="emergency_contact_name" id="emergency_contact_name"><br>
+      <div class="row mb-3">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-10">
+          <input type="submit" name="btn1" class=" form-control btn btn-primary p-2 mt-3 btn-submit" value="Submit">
+        </div>
+      </div>
+    </form>
+    <?php echo $msg?>
+  </div>
 
-    <label for="emergency_contact_phone">Emergency Contact Phone:</label>
-    <input type="text" name="emergency_contact_phone" id="emergency_contact_phone"><br>
-
-    <input type="submit" name="submit" value="Save Patient Profile">
-</form>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

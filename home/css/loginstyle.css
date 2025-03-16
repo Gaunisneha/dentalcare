@@ -233,9 +233,10 @@ form{
         }
     }
 
-    .errmsg{
+    .error {
         color: red;
         font-size: 14px;
-        margin-left: 10px;
+        display: block;
+        margin-top: 5px;
     }
     
