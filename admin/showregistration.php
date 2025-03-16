@@ -11,6 +11,7 @@
         $dc= new dataclass();
         $query="";
         $msg=""; 
+        $count=0;
      ?>
      <?php    
         if(isset($_POST['bnew']))
@@ -44,8 +45,11 @@
 </head>
 <body>
 <?php include("slider.php"); ?>
+
    <div class="content">
+
    <?php include("header.php"); ?>
+
    <form action="#" method="POST">
         <main id="main" class="main">
             <section class="section dashboard">
@@ -59,15 +63,22 @@
                     </div> -->
                   </div>
                   <div class="row">
-                  <div class="col-md-11">
+                  <div class="col-md-11 p-3">
                          <input type="text" placeholder="Search" id="myInput" class="form-control"  >
                     </div>
                     <div class="row">
                     <div class="12">
                         <table class="table table-bordered">
-                            <thead>
+                            <thead class="table-dark">
                     <tr>
-                        <th>USERID</th><th>DATE</th><th>USERNAME</th><th>CONTACTNO</th><th>EMAILID</th><th>PASSWORD</th><th>DELETE</th><th>UPDATE</th>
+                        <th>USERID</th>
+                        <th>DATE</th>
+                        <th>USERNAME</th>
+                        <th>CONTACTNO</th>
+                        <th>EMAILID</th>
+                        <th>PASSWORD</th>
+                        <th>DELETE</th>
+                        <th>UPDATE</th>
                     </tr>
                             </thead>
                             <tbody id="myTable">
@@ -84,15 +95,16 @@
                         echo("<td>".$rw['contactno']."</td>");
                         echo("<td>".$rw['emailid']."</td>");
                         echo("<td>".$rw['password']."</td>");
-                        echo("<td><button class='btn btn-danger' type='submit' name='bdelete' value=".$rw['regid'].">Delete Data</button></td>");
-                        echo("<td><button class='btn btn-success' type='submit' name='bupdate' value=".$rw['regid'].">Update Data</button></td>");
+                        echo("<td><button class='btn btn-danger btn-sm me-2' type='submit' name='bdelete' value=".$rw['regid'].">Delete Data</button></td>");
+                        echo("<td><button class='btn btn-warning btn-sm' type='submit' name='bupdate' value=".$rw['regid'].">Update Data</button></td>");
                         echo("</tr>");
-                        
+                        $count++;
                     }
                     ?>
                     </tbody>
                     </table>
                     </div>
+                    <span>Total Contacts:<?php echo($count)?></span>
                   </div>
             </section>       
 </main>

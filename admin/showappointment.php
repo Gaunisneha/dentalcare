@@ -17,21 +17,21 @@
         if(isset($_POST['bnew']))
         {
             $_SESSION['trans']='new';
-            header('location:registrationform.php');
+            header('location:appointmantform.php');
         
         }
 
     if(isset($_POST['bupdate']))
     {
         $regid=$_POST['bupdate'];
-        $_SESSION['regid']=$regid;
+        $_SESSION['appid']=$appid;
         $_SESSION['trans']='update';
-        header('location:registrationform.php');
+        header('location:appointmentform.php');
     }
     if(isset($_POST['bdelete']))
     {
-        $regid=$_POST['bdelete'];
-        $query="delete from  registration where regid='$regid'";
+        $appid=$_POST['bdelete'];
+        $query="delete from appointment  where appid='$appid'";
         $result=$dc->deleterecord($query);
         if($result)
         {
@@ -45,25 +45,37 @@
 </head>
 <body>
 <?php include("slider.php"); ?>
+
    <div class="content">
    <?php include("header.php"); ?>
+
    <form action="#" method="POST">
         <main id="main" class="main">
             <section class="section dashboard">
-                  <div class="row">
-                    <div class="col-md-11">
+                  <div class="row" mb-3>
+                    <div class="col-md-10">
                         <h2 class="text-center">Appointment Data</h2>
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-2">
                          <input type="text" placeholder="Search" id="myInput" class="form-control"  >
                     </div>
                   </div>
                   <div class="row">
-                    <div class="12">
-                        <table class="table table-bordered">
-                    <thead>
+                    <div class="col-12">
+                        <table class="table table-bordered table-striped text-center">
+                    <thead class="table-dark">
                     <tr>
-                        <th>APPID</th><th>DATE</th><th>Patientid</th><th>Docid</th><th>Time</th><th>Remark</th><th>Status</th><th>DELETE</th><th>UPDATE</th>
+                        <th>APPID</th>
+                        <th>APPFOR</th>
+                        <th>DOCNAME</th>
+                        <th>PATIENTNAME</th>
+                        <th>EMAILID</th>
+                        <th>APPDATE</th>
+                        <th>APPTIME</th>
+                        <th>REMARK</th>
+                        <th>STATUS</th>
+                        <th>DELETE</th>
+                        <th>UPDATE</th>
                     </tr>
                     </thead>
                     <tbody id="myTable">
@@ -74,14 +86,16 @@
                     {
                         echo("<tr>");
                         echo("<td>".$rw['appid']."</td>");
-                        echo("<td>".$rw['appdate']."</td>");
-                        echo("<td>".$rw['patientid']."</td>");
+                        echo("<td>".$rw['appfor']."</td>");
                         echo("<td>".$rw['docid']."</td>");
+                        echo("<td>".$rw['patientname']."</td>");
+                        echo("<td>".$rw['emailid']."</td>");
+                        echo("<td>".$rw['appdate']."</td>");
                         echo("<td>".$rw['apptime']."</td>");
                         echo("<td>".$rw['remark']."</td>");
                         echo("<td>".$rw['status']."</td>");
-                        echo("<td><button class='btn btn-danger' type='submit' name='bdelete' value=".$rw['appid'].">Delete Data</button></td>");
-                        echo("<td><button class='btn btn-success' type='submit' name='bupdate' value=".$rw['appid'].">Update Data</button></td>");
+                        echo("<td><button class='btn btn-danger btn-sm' type='submit' name='bdelete' value=".$rw['appid'].">Delete Data</button></td>");
+                        echo("<td><button class='btn btn-warning btn-sm' type='submit' name='bupdate' value=".$rw['appid'].">Update Data</button></td>");
                         echo("</tr>");
                         $count++;
                     }

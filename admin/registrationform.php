@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
  <?php 
@@ -7,39 +8,63 @@
      ?>
      <?php
         $regid="";
-        $date="";
+        $regdate="";
         $username="";
-        $contactno="";
-        $emailid="";
         $password="";
+        $emailid="";
+        $contactno="";
         $dc= new dataclass();
         $query="";
         $msg=""; 
      ?>
+
      <?php    
         if($_SESSION['trans']=='update')
         {
             $regid=$_SESSION['regid'];
             $query="select * from registration where regid='$regid'";
             $rw=$dc->getrow($query);
-            $date=$rw['regdate'];
+            $regname=$rw['regdate'];
             $username=$rw['username'];
-            $contactno=$rw['contactno'];
-            $emailid=$rw['emailid'];
             $password=$rw['password'];
+            $emailid=$rw['emailid'];
+            $contactno=$rw['contactno'];
         }
 
+        
+        
         if(isset($_POST['bsave']))
         {
-            $date=$_POST['regdate'];
+            $regdate=$_POST['regdate'];
             $username=$_POST['username'];
-            $contactno=$_POST['contactno'];
-            $emailid=$_POST['emailid'];
             $password=$_POST['password'];
-            $query = "INSERT INTO `registration`( `regdate`,`username`, `contactno`, `emailid`, `password`) 
-            VALUES ('$date','$username','$contactno','$emailid','$password')";
-            $result = $dc->insertrecord($query);
-            echo "<script>console.log($result)</script>";
+            $emailid=$_POST['emailid'];
+            $contactno=$_POST['contactno'];
+          
+
+        if($_SESSION['trans']=='new')
+        {
+                $query = "INSERT INTO `registration`( `regdate`, `username`, `password`, `emailid`, `contactno`) 
+                VALUES ('$regdate','$username','$password','$emailid','$contactno')";
+                $result = $dc->insertrecord($query);
+            
+            if(!$result)
+            {
+                $msg="record not inserted";
+            }
+        }
+
+        if($_SESSION['trans']=='update')
+        {
+                $query = "update registration set regdate='$regdate',username='$username',password='$password',emailid='$emailid',contactno='$contactno' where regid='$regid'";
+                $result = $dc->updaterecord($query);
+            
+            if(!$result)
+            {
+                $msg="record not updated";
+            }
+        }
+            
 
 
             if($result)
@@ -73,42 +98,45 @@
                     <h2 class="ps-4">Registration Form</h2>
                     </div>
             <div class="col-md-6">
-            <!-- <div class="row-md-3 visibility-hidden" >
-                    <label class="col-md-3 col-form-label">Date</label>
-                    <div class="col-md-9">
-                        <input type="text" class="form-control" name="regdate" value='<?php echo $date ?>'>
-                    </div>
-                </div> -->
+
 
                 <div class="row-md-3">
-                    <label class="col-md-3 col-form-label">Username</label>
+                    <label class="col-md-3 col-form-label">regdate</label>
                     <div class="col-md-9">
-                        <input type="text" class="form-control" name="username" value='<?php echo $username ?>' autofocus>
+                        <input type="date" class="form-control" name="regdate" value='<?php echo $regdate ?>' autofocus>
                     </div>
                 </div>
 
                 <div class="row-md-3">
-                    <label class="col-md-3 col-form-label">Contactno</label>
+                    <label class="col-md-3 col-form-label">username</label>
                     <div class="col-md-9">
-                    <input type="text" class="form-control" name="contactno" value='<?php echo $contactno?>'>
+                    <input type="text" class="form-control" name="username" value='<?php echo $username?>'>
                     </div>
                 </div>
                 
                 <div class="row-md-3">
-                    <label class="col-md-3 col-form-label">Emailid</label>
+                    <label class="col-md-3 col-form-label">password</label>
                     <div class="col-md-9">
-                    <input type="email" class="form-control" name="emailid" value='<?php echo $emailid?>'>
+                    <input type="text" class="form-control" name="password" value='<?php echo $password?>'>
                     </div>
                 </div>
        
                 <div class="row-md-3">
-                    <label class="col-md-3 col-form-label">Password</label>
+                    <label class="col-md-3 col-form-label">Emailid</label>
                     <div class="col-md-9">
-                    <input type="password" class="form-control" name="password" value='<?php echo $password?>'>
+                    <input type="text" class="form-control" name="emailid" value='<?php echo $emailid?>'>
                     </div>
                 </div>
                 </div>
-                
+                <div class="col-md-6">
+                <div class="row-md-3">
+                    <label class="col-md-3 col-form-label">contactno</label>
+                    <div class="col-md-9">
+                    <input type="text" class="form-control" name="contactno" value='<?php echo $contactno?>'>
+                    </div>
+                </div>
+
+
                 <div class="row-md-3">
                    
                 </div>
@@ -125,8 +153,5 @@
 </main>
     </form>
    </div>
- 
-   
-
 </body>
 </html>

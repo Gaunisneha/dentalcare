@@ -17,9 +17,20 @@
         if(isset($_POST['bnew']))
         {
             $_SESSION['trans']='new';
-            header('location:doctorform.php');
+            header ('location:doctorform.php');
         
         }
+
+        if(isset($_POST['aprove']))
+        {
+            $docid=$_POST['aprove'];
+            
+            $query = "update dentist set status='Active' where docid='$docid'";
+            $result = $dc->updaterecord($query);
+            
+            
+        }
+
 
     if(isset($_POST['bupdate']))
     {
@@ -45,33 +56,43 @@
 </head>
 <body>
 <?php include("slider.php"); ?>
+
    <div class="content">
    <?php include("header.php"); ?>
+
    <form action="#" method="POST">
         <main id="main" class="main">
             <section class="section dashboard">
-                  <div class="row">
-                    <div class="col-md-11">
-                        <h2 class="text-center pt-2 ">Dentist details</h2>
+                  <div class="row mb-3">
+                    <div class="col-md-10">
+                        <h2 class="text-center pt-2">Dentist details</h2>
                     </div>
                     </div>
-                    <div class="row">
 
-                    <div class="col-md-11">
+                    <div class="row">
+                    <div class="col-md-11 p-3">
                          <input type="text" placeholder="Search" id="myInput" class="form-control"  >
                     </div>
                     <br>
-                    <div class="col-md-1">
+                    <div class="col-md-1 p-3">
                          <input type="submit" class="btn btn-success" name="bnew" value="new">
                     </div>
                   </div>
                   <div class="row">
-                    <div class="12">
-                        <table class="table table-bordered">
-                            <thead>
+                    <div class="col-12">
+                        <table class="table table-bordered table-striped table-hover text-center">
+                            <thead class="table-dark">
                                
                     <tr>
-                        <th>DENTISTID</th><th>DENTISTNAME</th><th>CONTACTNO</th><th>EMAILID</th><th>QUALIFICATION</th><th>EXEPERIENCE</th><th>SPECIALIZATION</th><th>DELETE</th><th>UPDATE</th>
+                        <th>DENTISTID</th>
+                        <th>DENTISTNAME</th>
+                        <th>CONTACTNO</th>
+                        <th>EMAILID</th>
+                        <th>QUALIFICATION</th>
+                        <th>EXEPERIENCE</th>
+                        <th>SPECIALIZATION</th>
+                        <th>Status</th>
+                        <th>Operations</th>
                     </tr>
                     </thead>
                     <tbody id="myTable">
@@ -88,16 +109,25 @@
                         echo("<td>".$rw['qualification']."</td>");
                         echo("<td>".$rw['experience']."</td>");
                         echo("<td>".$rw['speciality']."</td>");
-                        echo("<td><button class='btn btn-danger' type='submit' name='bdelete' value=".$rw['docid'].">Delete Data</button></td>");
-                        echo("<td><button class='btn btn-success' type='submit' name='bupdate' value=".$rw['docid'].">Update Data</button></td>");
+                        echo("<td>".$rw['status']."</td>");
+
+                        
+   
+                        if('Pending'==$rw['status'])
+                        {
+                            echo("<td><button class='btn btn-success btn-sm' type='submit' name='aprove' value=".$rw['docid'].">Approve</button></td>");
+                        }
+                        else
+                        {
+                        echo("<td><button class='btn btn btn-danger btn-sm me-2' type='submit' name='bdelete' value=".$rw['docid'].">Delete Data</button>");
+
+                        echo("<button class='btn btn-warning btn-sm' type='submit' name='bupdate' value=".$rw['docid'].">Update Data</button></td>");
+                        }
                         echo("</tr>");
                         $count++;
                     }
-                    ?>
+                    ?><i class="bi bi-trash3">
                     </tbody>
-                   
-                   
-                    
                     </table>
                     <span>Total Appointments:<?php echo($count)?></span>
                     </div>
@@ -107,7 +137,7 @@
     </form>
     <?php include("footer.php"); ?>
    </div>
-
+                    
    <?php include("jslink.php"); ?>
    
 
