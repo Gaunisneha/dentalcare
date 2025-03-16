@@ -91,8 +91,8 @@
                         <th>QUALIFICATION</th>
                         <th>EXEPERIENCE</th>
                         <th>SPECIALIZATION</th>
-                        <th>Status</th>
-                        <th>Operations</th>
+                        <th>STATUS</th>
+                        <th>OPERATIONS</th>
                     </tr>
                     </thead>
                     <tbody id="myTable">
@@ -119,14 +119,16 @@
                         }
                         else
                         {
-                        echo("<td><button class='btn btn btn-danger btn-sm me-2' type='submit' name='bdelete' value=".$rw['docid'].">Delete Data</button>");
+                        echo("<td><button class='btn btn btn-danger btn-sm me-2' type='submit' name='bdelete' value=".$rw['docid'].">
+                         <i class='fas fa-trash-alt'></i></button>");
 
-                        echo("<button class='btn btn-warning btn-sm' type='submit' name='bupdate' value=".$rw['docid'].">Update Data</button></td>");
+                        echo("<button class='btn btn-warning btn-sm' type='submit' name='bupdate' value=".$rw['docid'].">
+                        <i class='fas fa-edit'></i></button></td>");
                         }
                         echo("</tr>");
                         $count++;
                     }
-                    ?><i class="bi bi-trash3">
+                    ?>
                     </tbody>
                     </table>
                     <span>Total Appointments:<?php echo($count)?></span>

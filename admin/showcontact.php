@@ -13,6 +13,14 @@
         $msg=""; 
         $count=0;
      ?>
+
+<?php
+  if(isset($_POST['email']))
+  {
+    $_SESSION['userid']=$_POST['email'];
+    header('location:sendemail/emailform.php');
+  } ?>
+
      <?php    
         if(isset($_POST['bnew']))
         {
@@ -20,14 +28,7 @@
             header('location:contactform.php');
         
         }
-
-    if(isset($_POST['bupdate']))
-    {
-        $contactid=$_POST['bupdate'];
-        $_SESSION['contactid']=$contactcid;
-        $_SESSION['trans']='update';
-        header('location:contactform.php');
-    }
+        
     if(isset($_POST['bdelete']))
     {
         $contactid=$_POST['bdelete'];
@@ -52,7 +53,7 @@
             <section class="section dashboard">
                   <div class="row">
                     <div class="col-md-11">
-                        <h2 class="text-center pt-2 ">Contact Details</h2>
+                        <h2 class="text-center pt-2 ">CONTACT DETAILS</h2>
                     </div>
                     </div>
                     <div class="row">
@@ -70,15 +71,7 @@
                             <thead>
                                
                     <tr>
-                        <th>CONTACTID</th>
-                        <th>DATE</th>
-                        <th>Name</th>
-                        <th>EMAILID</th>
-                        <th>CONTACTNO</th>
-                        <th>DETAILS</th>
-                        <th>STATUS</th>
-                        <th>DELETE</th>
-                        <th>UPDATE</th>
+                        <th>CONTACTID</th><th>DATE</th><th>Name</th><th>EMAILID</th><th>CONTACTNO</th><th>DETAILS</th><th>STATUS</th><th>DELETE</th><th>UPDATE</th>
                     </tr>
                     </thead>
                     <tbody id="myTable">
@@ -96,7 +89,7 @@
                         echo("<td>".$rw['details']."</td>");
                         echo("<td>".$rw['status']."</td>");
                         echo("<td><button class='btn btn-danger' type='submit' name='bdelete' value=".$rw['contactid'].">Delete Data</button></td>");
-                        echo("<td><button class='btn btn-success' type='submit' name='bupdate' value=".$rw['contactid'].">Update Data</button></td>");
+                        echo("<td><button class='btn btn-success' type='submit' name='email' value=".$rw['contactid'].">Send Messagw</button></td>");
                         echo("</tr>");
                         $count++;
                     }

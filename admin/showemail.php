@@ -16,7 +16,21 @@
   {
     $_SESSION['userid']=$_POST['email'];
     header('location:sendemail/emailform.php');
-  } ?>
+  }
+  
+  if(isset($_POST['bdelete']))
+  {
+      $appid=$_POST['bdelete'];
+      $query="delete from  appointment where appid='$appid'";
+      $result=$dc->deleterecord($query);
+      if($result)
+      {
+          $msg="Delete record Successfully...";
+      }
+      else{
+          $msg="Record not deleted...";
+      }
+  }?>
 </head>
 <body>
 <?php include("slider.php"); ?>
@@ -29,8 +43,13 @@
           <?php
           echo("<table class='table table-bordered'>");
           echo("<thead><tr>");
-          echo("<th>Appid</th><th>AppDate</th><th>patientname</th><th>Email Address</th><th>Status</th><th>OPTION</th>");
-               $query="select appid,appdate,patientname,emailid,status from appointment where status='active'";
+          echo("<th>Appid</th>
+          <th>AppDate</th>
+          <th>patientname</th>
+          <th>Email Address</th>
+          <th>Status</th>
+          <th>OPTION</th>");
+               $query="select appid,appdate,patientname,emailid,status from appointment where status='Active'";
                $tb=$dc->gettable($query);
                echo("<tbody>");
                while($rw=mysqli_fetch_array($tb))
@@ -42,7 +61,7 @@
                    echo("<td>".$rw['emailid']."</td>");
                    echo("<td>".$rw['status']."</td>");
                    echo("<td><button class='btn btn-danger m-2' type='submit' name='email' value=".$rw['appid'].">Email</button>");
-                   echo("<button class='btn btn-primary' type='submit' name='email' value=".$rw['appid'].">Delete</button></td>");
+                   echo("<button class='btn btn-primary' type='submit' name='bdelete' value=".$rw['appid'].">Delete</button></td>");
                    echo("</tr>");
                
                }

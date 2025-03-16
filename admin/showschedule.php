@@ -18,9 +18,10 @@ $schedules = $dc->gettable($query);
 
     <div class="container mt-4">
         <h2>Doctor Schedules</h2>
-        <table class="table table-bordered">
-            <thead>
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="table-dark">
                 <tr>
+                    <th>ID</th>
                     <th>Doctor Name</th>
                     <th>Available Days</th>
                     <th>Start Time</th>
@@ -31,6 +32,7 @@ $schedules = $dc->gettable($query);
             <tbody>
                 <?php while ($row = mysqli_fetch_assoc($schedules)) { ?>
                     <tr>
+                        <td><?php echo $row['schedule_id'];?></td>
                         <td><?php echo $row['docname']; ?></td>
                         <td><?php echo $row['available_days']; ?></td>
                         <td><?php echo $row['start_time']; ?></td>

@@ -53,10 +53,10 @@
    <form action="#" method="POST">
         <main id="main" class="main">
             <section class="section dashboard">
-                  <div class="row">
+                  <div class="row mb-3">
             
-                    <div class="col-md-11">
-                        <h2 class="text-center">Register Data</h2>
+                    <div class="col-md-10">
+                        <h2 class="text-center pt-2">Register Data</h2>
                     </div>
                     <!-- <div class="col-md-1">
                          <input type="submit" class="btn btn-success" name="bnew" value="new">
@@ -68,7 +68,7 @@
                     </div>
                     <div class="row">
                     <div class="12">
-                        <table class="table table-bordered">
+                        <table class="table table-bordered table-striped table-hover">
                             <thead class="table-dark">
                     <tr>
                         <th>USERID</th>
@@ -95,8 +95,10 @@
                         echo("<td>".$rw['contactno']."</td>");
                         echo("<td>".$rw['emailid']."</td>");
                         echo("<td>".$rw['password']."</td>");
-                        echo("<td><button class='btn btn-danger btn-sm me-2' type='submit' name='bdelete' value=".$rw['regid'].">Delete Data</button></td>");
-                        echo("<td><button class='btn btn-warning btn-sm' type='submit' name='bupdate' value=".$rw['regid'].">Update Data</button></td>");
+                        echo("<td><button class='btn btn-danger btn-sm me-2' type='submit' name='bdelete' value=".$rw['regid'].">
+                       <i class='fas fa-trash-alt'></i></button></td>");
+                        echo("<td><button class='btn btn-warning btn-sm' type='submit' name='bupdate' value=".$rw['regid'].">
+                         <i class='fas fa-edit'></i></button></td>");
                         echo("</tr>");
                         $count++;
                     }

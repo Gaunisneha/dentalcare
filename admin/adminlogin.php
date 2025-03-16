@@ -27,6 +27,9 @@ if(isset($_POST['btn']))
    $adminname=$_POST['adminname'];
    $password=$_POST['password']; 
   //  $emailid=$_POST['emailid'];
+  if (empty($adminname) || empty($password)) {
+    $msg = "Please enter both username and password!";
+} else {
   $query = "SELECT * FROM admin WHERE adminname='$adminname' AND password='$password' ";
    $result=$dc->getrow($query);
    if ($result) {
@@ -37,6 +40,7 @@ if(isset($_POST['btn']))
   } else {
       $msg = "Invalid username or password!";
   }
+}
 }
            
 ?>

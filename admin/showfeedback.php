@@ -19,7 +19,7 @@
     if(isset($_POST['bdelete']))
     {
         $fdid=$_POST['bdelete'];
-        $query="delete from  feedback where fdid='$fdid'";
+        $query="delete from  feedback where fdid='$fbid'";
         $result=$dc->deleterecord($query);
         if($result)
         {
@@ -70,11 +70,11 @@
                     while($rw=mysqli_fetch_array($tb))
                     {
                         echo("<tr>");
-                        echo("<td>".$rw['fdid']."</td>");
+                        echo("<td>".$rw['fbid']."</td>");
                         echo("<td>".$rw['feedname']."</td>");
                        
                         echo("<td>".$rw['feedback']."</td>");
-                        echo("<td><button class='btn btn-danger m-1' type='submit' name='bdelete' value=".$rw['fdid'].">Delete Data</button></td>");
+                        echo("<td><button class='btn btn-danger m-1' type='submit' name='bdelete' value=".$rw['fbid'].">Delete Data</button></td>");
                     
                         echo("</tr>");
                         $count++;

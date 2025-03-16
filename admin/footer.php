@@ -13,7 +13,7 @@
                                 Mosinali Manasiya
                             </a>
                         </br>
-                        Distributed By <a class="border-bottom" href="adminhome.php" target="_blank">dental care</a>
+                        Distributed By <a class="border-bottom" href="adminhome.php" target="_blank">Dental care</a>
                         </div>
                     </div>
                 </div>
