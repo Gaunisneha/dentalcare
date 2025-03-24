@@ -64,7 +64,7 @@ class dataclass
             return false;
         }
     }
-}
+
 
 //     function formvalidation()
 //     {
@@ -80,6 +80,7 @@ class dataclass
 
 
 
+
         function primarykey($query)
             {
                 $tb=mysqli_query($this->conn,$query);
@@ -91,4 +92,11 @@ class dataclass
                 }
                 return $key;
             }
+            function counter($query){
+                $tb=mysqli_query($this->conn,$query);
+                $rw=mysqli_fetch_array($tb);
+                $count=$rw[0];
+                return $count;
+            }
+        }
 ?>
