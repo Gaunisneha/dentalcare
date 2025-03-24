@@ -1,181 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<?php 
-    session_start();
-    include ("../class/dataclass.php");
-   
-     ?> 
-     <?php 
-     $profileid="";
-     $firstname="";
-     $lastname="";
-     $address1="";
-     $address2="";
-     $cityid="";
-     $gender="";
-     $birthdate="";
-     $filename="";
-     $tmpname="";
-     $msg="";
-     $query="";
-     $dc=new dataclass();
-     ?>
-     <?php 
-     if(isset($_POST['btn1'])) 
-     {
-        $profileid=$_SESSION['regid'];
-        $firstname=$_POST['firstname'];
-        $lastname=$_POST['lastname'];
-        $address1=$_POST['address1'];
-        $address2=$_POST['address2'];
-        $cityid=$_POST['cityid'];
-        $gender=$_POST['gender'];
-        $birthdate=$_POST['birthdate'];
-        $filename=$_FILES['image']['name'];
-        $tmpname=$_FILES['image']['tmp_name'];
-        $query="update profile set firstname='$firstname',lastname='$lastname',address1='$address1',address2='$address2',cityid='$cityid',gender='$gender',birthdate='$birthdate',image='$filename' where profileid='$profileid'";
-        $result=$dc->updaterecord($query);
-        if($result)
-        {
-            move_uploaded_file($tmpname,'profileimages/'.$filename);
-             $msg="profile  successfull!!";
-        }
-        else
-        {
-            $msg="profile unsuccessfull!!";
-        }
-     }
-     ?>
-     <?php 
-     include("csslink.php") 
-     ?>
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile Form</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f6f9;
-      padding: 40px;
+<head>
+    <?php
+    session_start();
+    include("../class/dataclass.php");
+
+    $docid = "";
+    $username = "";
+    $contactno = "";
+    $emailid = "";
+    $gender = "";
+    $address = "";
+    $filename = "";
+    $msg = "";
+    $dc = new dataclass();
+    $query = "";
+
+    if (isset($_SESSION['regid'])) {
+        $docid = $_SESSION['regid'];
+    } else {
+        header('Location: profiletem.php');
+        exit();
     }
-    .form-container {
-      background-color: #ffffff;
-      padding: 30px;
-      border-radius: 8px;
-      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+
+    if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
+        $username = $_POST['username'];
+        $contactno = $_POST['contactno'];
+        $emailid = $_POST['emailid'];
+        $gender = $_POST['gender'];
+        $address = $_POST['address'];
+
+        if ($_FILES['image']['name'] != "") {
+            $filename = $_FILES['image']['name'];
+            $tmpname = $_FILES['image']['tmp_name'];
+            $upload_dir = 'img/';
+            
+            if (move_uploaded_file($tmpname, $upload_dir . $filename)) {
+            } else {
+                $msg = "File upload failed.";
+            }
+        }
+
+        $query = "UPDATE registration SET username='$username', emailid='$emailid', contactno='$contactno',
+                  gender='$gender', address ='$address', image='$filename' WHERE regid='$docid'";
+
+        $result = $dc->updaterecord($query);
+
+        if ($result) {
+            header('Location: profiletem.php');
+            exit();
+        } else {
+            $msg = "Error updating record.";
+        }
     }
-    .form-label {
-      font-weight: bold;
+
+    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+        $query = "SELECT * FROM registration WHERE regid='$docid'";
+        $rw = $dc->getrow($query);
+
+        if ($rw) {
+            $username = $rw['username'];
+            $emailid = $rw['emailid'];
+            $contactno = $rw['contactno'];
+            $gender = $rw['gender'];
+            $address = $rw['address'];
+            $filename = $rw['image'];
+        } else {
+            $msg = "User not found.";
+        }
     }
-    .form-control {
-      border-radius: 8px;
+
+    if (isset($_POST['cancel'])) {
+        header('location:profiletem.php');
     }
-    .btn-submit {
-      border-radius: 8px;
-    }
-    .form-row {
-      margin-bottom: 1rem;
-    }
-    .heading
-    {
-      font-weight: 700;
-    }
-  </style>
+    ?>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .form-control {
+            border: 1px solid black;
+        }
+        .form-section {
+            margin: 30px 0;
+        }
+    </style>
 </head>
 
 <body>
-  <div class="container form-container">
-    <h3 class="mb-4 text-center  heading">Profile</h3>
-    <form method="POST" action="#" enctype="multipart/form-data">
-      <div class="row mb-2">
-        <label for="fullname"  class="col-sm-2 col-form-label form-label">First Name</label>
-        <div class="col-sm-10">
-          <input type="text"  class="form-control" id="firstname" placeholder="Enter Full Name" name="firstname" value="<?php echo ($firstname)?>"autofocus>
-        </div>
-      </div>
+    <div class="content">
+        <form action="#" method="POST" enctype="multipart/form-data">
+            <main id="main" class="container">
+                <section class="section dashboard">
+                    <div class="row">
+                        <div class="row m-5">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-8">
+                                <h2 class="ps-4">Edit User Profile</h2>
+                                <?php if ($msg) { echo "<p class='alert alert-danger'>$msg</p>"; } ?>
+                            </div>
 
-      <div class="row mb-2">
-        <label for="fullname"  class="col-sm-2 col-form-label form-label">Last Name</label>
-        <div class="col-sm-10">
-          <input type="text"  class="form-control" id="lastname" placeholder="Enter Full Name" name="lastname" value="<?php echo ($lastname)?>">
-        </div>
-      </div>
+                            <div class="col-md-6">
+                                <div class="form-section">
+                                    <label class="col-md-3 col-form-label">Username</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="username" value='<?php echo $username ?>' autofocus>
+                                    </div>
+                                </div>
 
-      <div class="row mb-2">
-        <label for="address" class="col-sm-2 col-form-label form-label">Address1</label>
-        <div class="col-sm-10">
-          <textarea class="form-control"  id="address1" rows="3" placeholder="Enter Address"  name="address1" value="<?php echo ($address1)?>" ></textarea>
-        </div>
-      </div>
+                                <div class="form-section">
+                                    <label class="col-md-3 col-form-label">Emailid</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="emailid" value='<?php echo $emailid ?>'>
+                                    </div>
+                                </div>
 
-      <div class="row mb-2">
-        <label for="address" class="col-sm-2 col-form-label form-label">Address2</label>
-        <div class="col-sm-10">
-          <textarea class="form-control"  id="address2" rows="3" placeholder="Enter Address"  name="address2" value="<?php echo ($address2)?>" ></textarea>
-        </div>
-      </div>
+                                <div class="form-section">
+                                    <label class="col-md-3 col-form-label">Contactno</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="contactno" value='<?php echo $contactno ?>'>
+                                    </div>
+                                </div>
+                            </div>
 
-      <div class="row mb-2">
-        <label for="cityid">CityId</label>
-        <select name="cityid" class="form-control">
-        <option selected>Select city</option>
-                                        <?php
-                                        $query1="select cityid,cityname from city ";
-                                        $tb=$dc->gettable($query1);
-                                        while($rw=mysqli_fetch_array($tb))
-                                        {
-                                            if($cityid==$rw['cityid'])
-                                            {
-                                                echo"<option value=".$rw['cityid'].">".$rw['cityname']."</option>";
-                                            }
-                                            else
-                                            {
-                                                echo"<option value=".$rw['cityid'].">".$rw['cityname']."</option>";
-                                            }
-                                        }
-                                        ?>
-        </select>
-      </div> 
+                            <div class="col-md-6">
+                                <div class="form-section">
+                                    <label class="col-md-3 col-form-label">Gender</label>
+                                    <div class="col-md-9">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" value="Male" <?php echo ($gender == 'Male') ? 'checked' : ''; ?>>
+                                            <label class="form-check-label">Male</label>
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="gender" value="Female" <?php echo ($gender == 'Female') ? 'checked' : ''; ?>>
+                                            <label class="form-check-label">Female</label>
+                                        </div>
+                                    </div>
+                                </div>
 
-      <div class="row mb-2">
-        <label for="gender" class="col-sm-2 col-form-label form-label">Gender</label>
-        <div class="col-sm-10">
-          <select name="gender" class="form-select" id="gender">
-            <option selected>Choose Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-        </div>
-      </div>
+                                <div class="form-section">
+                                    <label class="col-md-3 col-form-label">Address</label>
+                                    <div class="col-md-9">
+                                        <textarea class="form-control" name="address"><?php echo $address ?></textarea>
+                                    </div>
+                                </div>
 
-      <div class="row mb-2">
-        <label for="birthdate" class="col-sm-2 col-form-label form-label">Birthdate</label>
-        <div class="col-sm-10">
-          <input  type="date" class="form-control" id="birthdate"  name="birthdate" value="<?php echo ($birthdate)?>" >
-        </div>
-      </div>
+                                <div class="form-section">
+                                    <label class="col-md-3 col-form-label">Profile Image</label>
+                                    <div class="col-sm-10">
+                                        <input name="image" type="file" class="form-control" value="<?php echo $filename ?>">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-      <div class="row mb-2">
-        <label for="image" class="col-sm-2 col-form-label form-label">Profile Image</label>
-        <div class="col-sm-10">
-          <input name="image" type="file" class="form-control" class="image">
-        </div>
-      </div>
-
-      <div class="row mb-3">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-10">
-          <input type="submit" name="btn1" class=" form-control btn btn-primary p-2 mt-3 btn-submit" value="Submit">
-        </div>
-      </div>
-    </form>
-    <?php echo $msg?>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <input type="submit" class="btn btn-success m-3" name="update" value='Save'>
+                                <input type="submit" class="btn btn-danger m-3" name="cancel" value='Cancel'>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </form>
+    </div>
 </body>
+
 </html>

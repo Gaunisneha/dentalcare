@@ -12,7 +12,6 @@
 <?php   include("slider.php") ?> 
 <?php   include("banner.php") ?>
 <?php   include("price.php") ?>
-<?php   include("review.php") ?> 
 <?php   include("offer.php") ?>
 <?php   include("footer.php") ?> 
 <?php include("jsslink.php") ?>

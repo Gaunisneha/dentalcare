@@ -139,7 +139,8 @@ try {
         $username = $rw['username'];
         $contactno = $rw['contactno'];
         $emailid = $rw['emailid'];
-        $password = $rw['password'];
+        $gender = $rw['gender'];
+        $address = $rw['address'];
         $image = $rw['image'];
     }
 } catch (Exception $e) {
@@ -161,11 +162,7 @@ try {
                     <div class="col-md-4">
                         <div class="profile-img">
                             <img src="../home/profileimages/<?php echo $image;?>" alt=""/>
-                            <div class="file btn btn-lg btn-primary">
-                                Change Photo
-                                <input type="file" name="file"/>
-                                
-                            </div> 
+                           
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -224,14 +221,7 @@ try {
                                                 <p><?php echo $contactno; ?></p>
                                             </div>
                                         </div>
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <label>Password</label>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <p><?php echo $password; ?></p>
-                                            </div> 
-                                        </div>
+                                        
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <label>Gender</label>

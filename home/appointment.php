@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <?php 
-    // session_start();
+    session_start();
     include ("../class/dataclass.php");
      
      ?>

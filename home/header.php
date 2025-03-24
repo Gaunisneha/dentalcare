@@ -12,7 +12,7 @@
  <body>
  <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
         <a href="index.html" class="navbar-brand p-0">
-            <h1 class="m-0 text-primary"><i class="fa fa-tooth me-2"></i>Dental Health care</h1>
+            <h1 class="m-0 text-primary"><i class="fa fa-tooth me-2"></i>Dental Health Care</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -25,6 +25,7 @@
                 <a href="service.php" class="nav-item nav-link">Service</a>
                 <a href="contact.php" class="nav-item nav-link">Contact</a>
                 <a href="profiletem.php" class="nav-item nav-link">Profile</a>
+
                 <div class="nav-item dropdown"> 
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-person-circle"></i></a>
                     <div class="dropdown-menu m-0">
