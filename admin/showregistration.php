@@ -76,9 +76,9 @@
                         <th>USERNAME</th>
                         <th>CONTACTNO</th>
                         <th>EMAILID</th>
-                        <th>PASSWORD</th>
+                        <!-- <th>PASSWORD</th> -->
                         <th>DELETE</th>
-                        <th>UPDATE</th>
+                        <!-- <th>UPDATE</th> -->
                     </tr>
                             </thead>
                             <tbody id="myTable">
@@ -94,11 +94,11 @@
                         echo("<td>".$rw['username']."</td>");
                         echo("<td>".$rw['contactno']."</td>");
                         echo("<td>".$rw['emailid']."</td>");
-                        echo("<td>".$rw['password']."</td>");
+                        // echo("<td>".$rw['password']."</td>");
                         echo("<td><button class='btn btn-danger btn-sm me-2' type='submit' name='bdelete' value=".$rw['regid'].">
                        <i class='fas fa-trash-alt'></i></button></td>");
-                        echo("<td><button class='btn btn-warning btn-sm' type='submit' name='bupdate' value=".$rw['regid'].">
-                         <i class='fas fa-edit'></i></button></td>");
+                        // echo("<td><button class='btn btn-warning btn-sm' type='submit' name='bupdate' value=".$rw['regid'].">
+                        //  <i class='fas fa-edit'></i></button></td>");
                         echo("</tr>");
                         $count++;
                     }

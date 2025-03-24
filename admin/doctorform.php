@@ -44,11 +44,12 @@
             $experience=$_POST['experience'];
             $speciality=$_POST['speciality'];
             $aboutus=$_POST['aboutus'];
+            
 
         if($_SESSION['trans']=='new')
         {
-                $query = "INSERT INTO `dentist`( `docname`, `contactno`, `emailid`, `qualification`, `experience`, `speciality`, `aboutus`) 
-                VALUES ('$docname','$contactno','$emailid','$qualification','$experience','$speciality','$aboutus')";
+                $query = "INSERT INTO `dentist`( `docname`, `contactno`, `emailid`, `qualification`, `experience`, `speciality`, `aboutus`,`status`) 
+                VALUES ('$docname','$contactno','$emailid','$qualification','$experience','$speciality','$aboutus','Pending')";
                 $result = $dc->insertrecord($query);
             
             if(!$result)

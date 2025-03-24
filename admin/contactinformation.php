@@ -42,30 +42,38 @@ session_start();
 </head>
 <body>
 
-<?php   include("header.php") ?>
+     <?php include("slider.php"); ?>
+    <div class="content">
+     <?php include("header.php"); ?>
       <!-- Contact Start -->
       <div class="container-fluid py-5">
+        
         <div class="container">
             <div class="row g-5">
         
                 <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.3s">
+                <center>
                     <form method="POST" action="#">
                         <div class="row g-3">
+                            <h1>Contact Information </h1>
                             <div class="col-12">
-                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="OurOffice" name="ouroffice" style="height: 55px;">
+                                <input type="text" class="form-control border-2 bg-light px-6" placeholder="OurOffice" name="ouroffice" style="height: 55px;">
                             </div>
                             <div class="col-12">
-                                <input type="email" class="form-control border-0 bg-light px-4" placeholder="Your Email" name="emailid" style="height: 55px;">
+                                <input type="email" class="form-control border-2 bg-light px-6" placeholder="Your Email" name="emailid" style="height: 55px;">
                             </div>
                             <div class="col-12">
-                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Contact No" name="contactno" style="height: 55px;">
+                                <input type="text" class="form-control border-2 bg-light px-6" placeholder="Contact No" name="contactno" style="height: 55px;">
                             </div>
                             <div class="col-12">
                                 <input class="btn btn-primary w-100 py-3" name="btn1" type="submit" value="Edit">
                             </div>
                         </div>
                         <label class="form-lable" ><?php echo $msg ?></label>
+      
                     </form>
+                    
+                     <center>
                 </div>
                 <div class="col-xl-4 col-lg-12 wow slideInUp" data-wow-delay="0.6s">
                     <iframe class="position-relative rounded w-100 h-100"
@@ -73,11 +81,23 @@ session_start();
                         frameborder="0" style="min-height: 400px; border:0;" allowfullscreen="" aria-hidden="false"
                         tabindex="0"></iframe>
                 </div>
+             </div>
             </div>
-        </div>
-    </div>
+     </div>
+     <?php include("footer.php"); ?>
+</div>
+<?php include("jslink.php"); ?>
     <!-- Contact End -->
  
 </body>
-
+<script>
+$(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+</script>
 </html>

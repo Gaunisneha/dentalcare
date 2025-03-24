@@ -13,9 +13,9 @@ $schedules = $dc->gettable($query);
     <title>Doctor Schedules</title>
     <?php include("csslink.php"); ?>
 </head>
-<body>
-    <?php include("header.php"); ?>
-
+<<?php include("slider.php"); ?>
+   <div class="content">
+   <?php include("header.php"); ?>
     <div class="container mt-4">
         <h2>Doctor Schedules</h2>
         <table class="table table-bordered table-striped table-hover">
@@ -38,8 +38,7 @@ $schedules = $dc->gettable($query);
                         <td><?php echo $row['start_time']; ?></td>
                         <td><?php echo $row['end_time']; ?></td>
                         <td>
-                            <a href="editschedule.php?id=<?php echo $row['schedule_id']; ?>" class="btn btn-warning btn-sm">Edit</a>
-                            <a href="deleteschedule.php?id=<?php echo $row['schedule_id']; ?>" class="btn btn-danger btn-sm">Delete</a>
+                          
                         </td>
                     </tr>
                 <?php } ?>

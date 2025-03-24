@@ -104,7 +104,7 @@
                     ?>
                     </tbody>
                     </table>
-                    <span>Total Appointmenta:<?php echo($count)?></span>
+                    <span>Total Appointments:<?php echo($count)?></span>
                     </div>
                   </div>
             </section>       

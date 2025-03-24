@@ -1,37 +1,59 @@
-<!DOCTYPE html>
- <html lang="en">
- <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
- </head>
- <link href="css/style.css" rel="stylesheet">
- <body>
- <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
-        <a href="index.html" class="navbar-brand p-0">
-            <h1 class="m-0 text-primary"><i class="fa fa-tooth me-2"></i>Dental Health care</h1>
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <div class="navbar-nav ms-auto py-0">
-                <a href="mainhome.php" class="nav-item nav-link">Home</a>
-                <a href="about.php" class="nav-item nav-link">About</a>
-                <a href="doctor.php" class="nav-item nav-link">Doctor</a>
-                <a href="service.php" class="nav-item nav-link">Service</a>
-                <a href="contact.php" class="nav-item nav-link">Contact</a>
-                <div class="nav-item dropdown"> 
-                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-person-circle"></i> User</a>
-                    <div class="dropdown-menu m-0">
-                        <a href="../home/mainhome.php">Patient</a><br>
-                        <a href="../doctor/doctorlogin.php">Doctor</a><br>
-                        <a href="../admin/adminlogin.php">Admin</a>
+   <!-- Navbar Start -->
+   <?php 
+    // session_start();
+    include_once ("../class/dataclass.php");
+    $dc=new dataclass();
+    $docid= $_SESSION['docid'] ; 
+    $docname= $_SESSION['docname']; 
+     ?>
+   <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
+                <a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+                    <h2 class="text-primary mb-0"><i class="fa fa-hashtag"></i></h2>
+                </a>
+                <a href="#" class="sidebar-toggler flex-shrink-0">
+                    <i class="fa fa-bars"></i>
+                </a>
+                <!-- <form class="d-none d-md-flex ms-4">
+                    <input class="form-control border-0" type="search" placeholder="Search">
+                </form> -->
+                
+                <div class="navbar-nav align-items-center ms-auto">
+                <div class="ms-3">
+                        <h6 class="mb-0">Dr. <?php echo $docname; ?> </h6>
+                        <!-- <span>Admin</span> -->
+                    </div>
+                
+
+                    <div class="nav-item dropdown">
+                        
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                            
+                            
+                    </div>
+                    
+                    <div class="nav-item dropdown">
+                        
+                        <!-- <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                       
+                            <hr class="dropdown-divider">
+                           
+                            <hr class="dropdown-divider">
+                            
+                            <hr class="dropdown-divider">
+                        </div> -->
+                    </div>
+                    
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+
+                        </a>
+                        
+                        <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
+                        
+                            <a href="profile.php" class="dropdown-item">My Profile</a>
+                            <a href="logout.php" class="dropdown-item">Log Out</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <a href="appointment.php" class="btn btn-primary py-2 px-4 ms-3">Appointment</a>
-        </div>
-    </nav>
- </body>
- </html>
+            </nav>
+            <!-- Navbar End -->
