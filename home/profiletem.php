@@ -21,14 +21,18 @@ try {
     ?>
   <style>
     body{
-    background: -webkit-linear-gradient(left, #06A3DA, #06A3DA);
+    background: -webkit-linear-gradient(left,rgb(8, 179, 242), #06A3DA);
 }
 .emp-profile{
-    padding: 3%;
-    margin-top: 3%;
-    margin-bottom: 3%;
+    padding: 2%;
+    margin: 2% auto;
+    width: 80%;
+    max-width: 600px;
     border-radius: 0.5rem;
     background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* text-align: center; */
+   
 }
 .profile-img{
     text-align: center;
@@ -37,7 +41,10 @@ try {
 .profile-img img{
     width: 70%;
     height: 100%;
+   
     border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #06A3DA;
 
 }
 .profile-img .file {
@@ -58,29 +65,45 @@ try {
 }
 .profile-head h5{
     color: #333;
+    font-size: 20px;
+    font-weight: bold;
 }
 .profile-head h6{
-    color: #0d6efd;;
+    color: #0d6efd;
+    font-size: 16px;
 }
-.profile-edit-btn{
+.profile-edit-btn, .profile-work input{
     border: none;
+    border-radius: 25px;
+    width: 80%;
+    padding: 8px;
+    font-weight: bold;
+    color: white;
+    background: #06A3DA;
+    transition: 0.3s;
+    margin: 5px 0;
+
+    /* border: none;
     border-radius: 1.5rem;
     width: 70%;
     padding: 2%;
     font-weight: 600;
     color: #6c757d;
-    cursor: pointer;
+    cursor: pointer; */
 }
-.proile-rating{
+.profile-edit-btn {
+        width: 100%;
+    }
+/* .profile-rating{
     font-size: 12px;
     color: #818182;
     margin-top: 5%;
 }
-.proile-rating span{
+.profile-rating span{
     color: #495057;
     font-size: 15px;
     font-weight: 600;
-}
+} */
 .profile-head .nav-tabs{
     margin-bottom:5%;
 }
@@ -113,10 +136,12 @@ try {
 }
 .profile-tab label{
     font-weight: 600;
+    color: #555;
 }
 .profile-tab p{
     font-weight: 600;
     color: #0062cc;
+    margin-bottom: 10px;
 }
   </style>
 </head>
@@ -154,7 +179,12 @@ try {
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
- 
+ <?php
+ include 'csslink.php';?>
+ <?php
+include 'header.php';
+
+?>
 <div class="container emp-profile">
     <h1 class="p-4">PROFILE:</h1>
             <form method="post">

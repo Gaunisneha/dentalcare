@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 
-  <link rel="stylesheet" href="css/style1.css">
+  <link rel="stylesheet" href="css/login.css">
   <?php include("csslink.php"); ?>
   <?php 
     session_start();
@@ -57,7 +57,7 @@ if(isset($_POST['btn']))
             <img src="../admin/img/admin2.jpg" alt="">
         </div>
         <div class="text-center mt-4 name">
-            DOCTOR LOGIN
+            DENTIST LOGIN
         </div>
 
         <?php if (!empty($msg)) { ?>
@@ -78,7 +78,7 @@ if(isset($_POST['btn']))
             <input class="btn mt-3" type="submit" name="btn" value="Login">
         </form>
         <div class="text-center fs-6">
-            <a href="forgottpass.php">Forget password?</a> or <a href="doctorform.php">Sign up</a>
+            <a href="forgottpass.php">Forget password?</a> or <a href="doctorform.php">Register??</a>
         </div>
     </div>
     </form>

@@ -8,6 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     
     <?php 
+    include '../doctor/csslink.php';
     include_once('../class/dataclass.php'); 
     session_start();
     ob_start();
@@ -85,7 +86,7 @@
     ?>
 </head>
 <body>
-
+   
 <!-- Main container for centering the form -->
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
 

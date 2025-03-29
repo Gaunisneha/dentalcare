@@ -25,7 +25,7 @@
         $emailid=$_POST['emailid'];
         $contactno=$_POST['contactno'];
         $details=$_POST['details'];
-        $query="INSERT INTO `contactus`(`contactdate`, `fullname`, `emailid`, `contactno`, `details`, `status`) VALUES ('$contactdate','$fullname','$emailid','$contactno','$details','pending')";
+        $query="INSERT INTO `contactus`(`contactdate`, `fullname`, `emailid`, `contactno`, `details`, `status`) VALUES ('$contactdate','$fullname','$emailid','$contactno','$details','Pending')";
         $result=$dc->insertrecord($query);
         if($result)
         {
@@ -80,19 +80,23 @@
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-6 wow slideInUp" data-wow-delay="0.3s">
-                    <form method="POST" action="#">
+                    <form method="POST" action="#" id="contactForm">
                         <div class="row g-3">
                             <div class="col-12">
-                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Your Name" name="fullname" style="height: 55px;">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Your Name" id="fullname" name="fullname" style="height: 55px;">
+                                <span id="fullnameError" style="color: red; font-size: 12px;"></span>
                             </div>
                             <div class="col-12">
-                                <input type="email" class="form-control border-0 bg-light px-4" placeholder="Your Email" name="emailid" style="height: 55px;">
+                                <input type="email" class="form-control border-0 bg-light px-4" placeholder="Your Email" name="emailid" id="emailid" style="height: 55px;">
+                                <span id="emailidError" style="color: red; font-size: 12px;"></span>
                             </div>
                             <div class="col-12">
-                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Contact No" name="contactno" style="height: 55px;">
+                                <input type="text" class="form-control border-0 bg-light px-4" placeholder="Contact No"  id="contactno" name="contactno" style="height: 55px;">
+                                <span id="contactnoError" style="color: red; font-size: 12px;"></span>
                             </div>
                             <div class="col-12">
-                                <textarea class="form-control border-0 bg-light px-4 py-3" rows="5" name="details" placeholder="Message"></textarea>
+                                <textarea class="form-control border-0 bg-light px-4 py-3" rows="5" id="details" name="details" placeholder="Message"></textarea>
+                                <span id="detailsError" style="color: red; font-size: 12px;"></span>
                             </div>
                             <div class="col-12">
                                 <input class="btn btn-primary w-100 py-3" name="btn1" type="submit" value="Send Message">
@@ -110,5 +114,64 @@
     <!-- Contact End -->
     <?php   include("footer.php") ?> 
 </body>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let fields = ["fullname", "emailid", "contactno", "details"];
+        let errorMessages = {
+            fullname: "Full Name is required",
+            emailid: "Enter a valid email (e.g., example@mail.com)",
+            contactno: "Enter a valid 10-digit phone number",
+            details: "Message cannot be empty"
+        };
+
+        function validateField(field) {
+            let value = document.getElementById(field).value.trim();
+            let errorElement = document.getElementById(field + "Error");
+            if (field === "fullname") {
+                let namePattern = /^[A-Za-z\s]+$/; // Only letters and spaces
+                if (!value.match(namePattern)) {
+                    errorElement.innerHTML = errorMessages[field];
+                    return false;
+                }
+            } else if (field === "emailid") {
+                let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+                if (!value.match(emailPattern)) {
+                    errorElement.innerHTML = errorMessages[field];
+                    return false;
+                }
+            } else if (field === "contactno") {
+                let phonePattern = /^[6-9]\d{9}$/;
+                if (!value.match(phonePattern)) {
+                    errorElement.innerHTML = errorMessages[field];
+                    return false;
+                }
+            } else {
+                if (value === "") {
+                    errorElement.innerHTML = errorMessages[field];
+                    return false;
+                }
+            }
+            errorElement.innerHTML = "";
+            return true;
+        }
+
+        function showError(field) {
+            fields.forEach(f => {
+                document.getElementById(f + "Error").innerHTML = (f === field) ? errorMessages[field] : "";
+            });
+        }
+
+        fields.forEach(field => {
+            let inputElement = document.getElementById(field);
+            let errorElement = document.getElementById(field + "Error");
+
+            inputElement.addEventListener("focus", () => showError(field));
+            inputElement.addEventListener("mouseover", () => showError(field));
+            inputElement.addEventListener("mouseout", () => errorElement.innerHTML = "");
+            inputElement.addEventListener("input", () => validateField(field));
+        });
+    });
+</script>
+
 <?php include("jsslink.php") ?>
 </html>

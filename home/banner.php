@@ -6,11 +6,11 @@
                         <h3 class="text-white mb-3">Opening Hours</h3>
                         <div class="d-flex justify-content-between text-white mb-3">
                             <h6 class="text-white mb-0">Mon - Fri</h6>
-                            <p class="mb-0"> 8:00am - 10:00pm</p>
+                            <p class="mb-0"> 8:00am - 8:00pm</p>
                         </div>
                         <div class="d-flex justify-content-between text-white mb-3">
                             <h6 class="text-white mb-0">Saturday</h6>
-                            <p class="mb-0"> 8:00am - 10:00pm</p>
+                            <p class="mb-0"> 8:00am - 8:00pm</p>
                         </div>
                         <div class="d-flex justify-content-between text-white mb-3">
                             <h6 class="text-white mb-0">Sunday</h6>

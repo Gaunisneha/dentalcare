@@ -89,6 +89,7 @@
                         echo("<td>".$rw['details']."</td>");
                         echo("<td>".$rw['status']."</td>");
                         echo("<td><button class='btn btn-danger' type='submit' name='bdelete' value=".$rw['contactid'].">Delete Data</button></td>");
+                        
                         echo("<td><button class='btn btn-success' type='submit' name='email' value=".$rw['contactid'].">Send Message</button></td>");
                         echo("</tr>");
                         $count++;

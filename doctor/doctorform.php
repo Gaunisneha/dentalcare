@@ -116,28 +116,35 @@
         .text-center {
             text-align: center;
         }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
     </style>
 </head>
 <body>
 
 <div class="container form-container">
-    <form action="#" method="POST" enctype="multipart/form-data">
+    <form action="#" method="POST" enctype="multipart/form-data " onsubmit="return validateForm()">
         <h2>Dentist Registration</h2>
         <div class="row">
             <div class="col-md-6">
                 <div class="mb-3">
                     <label class="form-label" for="docname">Docname</label>
                     <input type="text" class="form-control" id="docname" name="docname" value='<?php echo $docname ?>' autofocus>
+                    <span class="error" id="docnameError"></span>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="contactno">Contact No</label>
                     <input type="text" class="form-control" id="contactno" name="contactno" value='<?php echo $contactno ?>'>
+                    <span class="error" id="contactError"></span>
                 </div>
 
                 <div class="mb-3">
                     <label class="form-label" for="emailid">Email ID</label>
                     <input type="email" class="form-control" id="emailid" name="emailid" value='<?php echo $emailid ?>'>
+                    <span class="error" id="emailError"></span>
                 </div>
 
                 <div class="mb-3">
@@ -189,7 +196,44 @@
         </div>
     </form>
 </div>
+<script>
+        document.getElementById("contactno").addEventListener("input", function() {
+            var contact = this.value;
+            var contactError = document.getElementById("contactError");
+            if (contact.length !== 10 || isNaN(contact)) {
+                contactError.textContent = "Please enter a valid 10-digit contact number.";
+            } else {
+                contactError.textContent = "";
+            }
+        });
 
+        document.getElementById("emailid").addEventListener("input", function() {
+            var email = this.value;
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            var emailError = document.getElementById("emailError");
+            if (!emailPattern.test(email)) {
+                emailError.textContent = "Please enter a valid email address.";
+            } else {
+                emailError.textContent = "";
+            }
+        });
+
+        function validateForm() {
+            var contact = document.getElementById("contactno").value;
+            var email = document.getElementById("emailid").value;
+            var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(email)) {
+                alert("Please enter a valid email address.");
+                return false;
+            }
+            if (contact.length !== 10 || isNaN(contact)) {
+                alert("Please enter a valid 10-digit contact number.");
+                return false;
+            }
+            return true;
+        }
+    </script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

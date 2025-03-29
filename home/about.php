@@ -37,7 +37,7 @@
                     <!-- <div class="position-relative h-100">
                         <img class="position-absolute w-100 h-100 rounded wow zoomIn" data-wow-delay="0.9s" src="img/about.jpg" style="object-fit: cover;">
                     </div> -->
-                    <video width="600" height="300" controls >
+                    <video width="600" height="300" autoplay muted loop >
                         <source src="0_Dentist_Dental_3840x2160.mp4" type="video/mp4">
                     </video>
                 </div>

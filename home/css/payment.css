@@ -34,18 +34,23 @@ h2 {
     margin: 10px 0;
 }
 
-.input-group i {
-    margin-right: 10px;
-    color: #555;
+.input-group:hover {
+    background: #e8e8e8;
 }
 
-.input-group input {
+.input-group i {
+    margin-right: 10px;
+    color: #007BFF;
+}
+
+.input-group input, .input-group select {
     border: none;
     background: none;
     outline: none;
     font-size: 16px;
     width: 100%;
 }
+
 
 button {
     background: #28a745;

@@ -2,6 +2,27 @@
 
 <html lang="en">
 <head>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
  <?php 
      session_start();
      include("../class/dataclass.php");
@@ -87,8 +108,58 @@
     </style>
 </head>
 <body>
+<div class="container">
+        <h2>Dentist Form</h2>
+        <form action="#" method="POST">
+            <div class="mb-3">
+                <label class="form-label">Docname</label>
+                <input type="text" class="form-control" name="docname" value='<?php echo $docname ?>' autofocus>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Contact No</label>
+                <input type="text" class="form-control" name="contactno" value='<?php echo $contactno ?>'>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Email ID</label>
+                <input type="text" class="form-control" name="emailid" value='<?php echo $emailid ?>'>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Qualification</label>
+                <input type="text" class="form-control" name="qualification" value='<?php echo $qualification ?>'>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Experience</label>
+                <input type="text" class="form-control" name="experience" value='<?php echo $experience ?>'>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">Speciality</label>
+                <input type="text" class="form-control" name="speciality" value='<?php echo $speciality ?>'>
+            </div>
+            
+            <div class="mb-3">
+                <label class="form-label">About Us</label>
+                <textarea class="form-control" name="aboutus" rows="4"><?php echo $aboutus ?></textarea>
+            </div>
+            
+            <div class="text-center">
+                <button type="submit" class="btn btn-success" name="bsave">Save</button>
+                <button type="submit" class="btn btn-danger" name="bcancel">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
 
-   <div class="content">
+
+
+
+
+   <!-- <div class="content">
 
    <form action="#" method="POST">
         <main id="main" class="container">
@@ -169,6 +240,6 @@
             </section>       
 </main>
     </form>
-   </div>
+   </div> -->
 </body>
 </html>

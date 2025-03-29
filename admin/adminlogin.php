@@ -54,6 +54,11 @@ if(isset($_POST['btn']))
         <div class="text-center mt-4 name">
             ADMIN LOGIN
         </div>
+        <?php if (!empty($msg)) { ?>
+                    <div class="alert alert-danger text-center">
+                        <?php echo $msg; ?>
+                    </div>
+                <?php } ?>
         <form class="p-3 mt-3">
             <div class="form-field d-flex align-items-center">
                 <span class="far fa-user"></span>

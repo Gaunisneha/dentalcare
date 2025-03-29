@@ -40,6 +40,14 @@
             <div class="input-group">
                 <input type="date" name="appointment_date" required>
             </div>
+            <div class="input-group">
+                <select name="payment_method" required>
+                    <option value="stripe">💳 Credit/Debit Card (Stripe)</option>
+                    <option value="paypal">💰 PayPal</option>
+                    <option value="razorpay">🏦 UPI / Net Banking (Razorpay)</option>
+                </select>
+
+            </div>
 
             <div class="input-group">
                 <input type="number" name="amount" placeholder="Amount ($)" required>

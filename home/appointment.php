@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<?php 
+
+<?php   include("topbar.php") ?> 
+<?php   include("header.php") ?> 
+<?php
     session_start();
     include ("../class/dataclass.php");
      
@@ -23,6 +26,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <?php   include("csslink.php") ?>
     
@@ -83,6 +87,7 @@ function validateDoctor() {
 function validateName() {
     let name = document.getElementById("patientname").value.trim();
     let errorMsg = document.getElementById("nameError");
+    // let namePattern = /^[A-Za-z\s]+$/; 
     if (name === "") {
         errorMsg.innerText = "❌ Name is required.";
         errorMsg.style.color = "red";
@@ -118,22 +123,43 @@ function validateEmail() {
         let selectedDate = new Date(appDate);
         today.setHours(0, 0, 0, 0); // Reset time for comparison
 
+        let maxDate = new Date();
+    maxDate.setMonth(maxDate.getMonth() + 1);
+    maxDate.setHours(0, 0, 0, 0);
+
+    if (!appDate) {
+        errorMsg.innerText = "❌ Please select an appointment date.";
+        errorMsg.style.color = "red";
+        return false;
+    }
         if (selectedDate < today) {
             errorMsg.innerText = "❌ You cannot book an appointment for a past date.";
-            errorMsg.style.color = "red";
-        } else {
-            errorMsg.innerText = "";
-        }
-    }
+        errorMsg.style.color = "red";
+        return false;
 
+    } 
+    else if (selectedDate > maxDate) {
+        errorMsg.innerText = "❌ You can only book an appointment within the next 1 months.";
+        errorMsg.style.color = "red";
+        return false;
+    } 
+    else if (selectedDate.getDay() === 0) {
+        errorMsg.innerText = "❌ Sorry, we are closed on Sundays.";
+        errorMsg.style.color = "red";
+        return false;
+    } else {
+        errorMsg.innerText = "";
+        return true;
+    }
+}
     function validateTime() {
         let appTime = document.getElementById("apptime").value;
         let errorMsg = document.getElementById("timeError");
 
         if (appTime) {
             let [hour, minute] = appTime.split(":").map(Number);
-            if (hour < 8 || hour > 22) {
-                errorMsg.innerText = "❌ Appointments are available only between 8:00 AM - 10:00 PM.";
+            if (hour < 8 || hour > 20) {
+                errorMsg.innerText = "❌ Appointments are available only between 8:00 AM - 8:00 PM.";
                 errorMsg.style.color = "red";
             } else {
                 errorMsg.innerText = "";
@@ -142,8 +168,7 @@ function validateEmail() {
     }
 </script>
 
-<?php   include("topbar.php") ?> 
-<?php   include("header.php") ?> 
+
 <?php 
      if(isset($_POST['btn1'])) 
      {
@@ -157,26 +182,81 @@ function validateEmail() {
         // $apptime=$_POST['apptime'];
         $remark=$_POST['remark'];
         
-        
+        if ($appfor == "Select Service" || $docid == "Select Doctor" || $patientname == "" || 
+            $emailid == "" || $appdate == "" || $apptime == "") {
+            echo "<script>
+                    Swal.fire({
+                        icon: 'warning',
+                        title: 'Incomplete Details',
+                        text: '❌ Please fill in all the appointment details!',
+                        confirmButtonColor: '#3085d6',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href='appointment.php';
+                        }
+                    });
+                  </script>";
+            exit();
+        }
+
         
         $query="INSERT INTO `appointment`(`appfor`, `docid`, `patientname`,`emailid`, `appdate`, `apptime`, `remark`, `status`) VALUES ('$appfor','$docid','$patientname','$emailid','$appdate','$apptime','$remark','Pending')";
         $result=$dc->insertrecord($query);
 
         if($result)
         {
-            
-             $msg="Appointment booked successfully";
+            echo "<script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Appointment Booked!',
+                        text: '✅ Your appointment has been successfully scheduled.',
+                        confirmButtonColor: '#28a745',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href='appointment.php';
+                        }
+                    });
+                  </script>";
+            //  $msg="Appointment booked successfully";
         }
         else
         {
-            $msg="Appointment booking failed";
+            echo "<script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Booking Failed',
+                text: '❌ Unable to book the appointment. Please try again!',
+                confirmButtonColor: '#d33',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href='appointment.php';
+                }
+            });
+          </script>";
+            // $msg="Appointment booking failed";
             
         }
-    
  }
+ 
 else
 {
-    echo "<script> alert('Please fill Appoinment Details!!!!'); window.location.href='appointment.php'; </script>";           
+    echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Session Expired',
+                    text: '❌ Please log in again to book an appointment!',
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href='loginpage.php';
+                    }
+                });
+              </script>";   
+    // echo "<script> alert('Please fill Appoinment Details!!!!'); window.location.href='appointment.php'; </script>";           
 }
     }
      ?>
@@ -252,7 +332,7 @@ else
                                     <div class="date" id="date1" data-target-input="nearest">
                                         <input type="date" id="appdate"
                                             class="form-control bg-light border-0 "
-                                            placeholder="Appointment Date" name="appdate" data-toggle="datetimepicker" style="height: 55px;">
+                                            placeholder="Appointment Date" name="appdate" data-toggle="datetimepicker" onchange="validateDate()" style="height: 55px;">
                                             <small id="dateError" class="error-message"></small>
                                     </div>
                                 </div>
@@ -260,7 +340,7 @@ else
                                     <div class="time" id="time1" data-target-input="nearest">
                                         <input type="time" id="apptime"
                                             class="form-control bg-light border-0 "
-                                            placeholder="Appointment Time"  name="apptime"  min="08:00" max="22:00" data-toggle="datetimepicker" style="height: 55px;">
+                                            placeholder="Appointment Time"  name="apptime"  min="08:00" max="20:00" onchange="validateTime()" data-toggle="datetimepicker" style="height: 55px;">
                                             <small id="timeError" class="error-message"></small>
                                     </div>
                                 </div>
@@ -271,6 +351,7 @@ else
                                 <div class="col-12">
                                     <input class="btn btn-dark w-100 py-3" name="btn1" type="submit" value="Make Appointment">
                                 </div>
+                                <!-- <p class="text-white"></p> -->
                                 <?php echo $msg ?>
                             </div>
                         </form>

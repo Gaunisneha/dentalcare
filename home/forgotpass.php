@@ -52,12 +52,12 @@
                         $mail->isSMTP();
                         $mail->Host = 'smtp.gmail.com';
                         $mail->SMTPAuth = true;
-                        $mail->Username = 'snehagauni@gmail.com'; // Your Gmail Address
-                        $mail->Password = 'gbxczjdfvxxebvuc'; // App Password (NOT your regular Gmail password)
+                        $mail->Username = 'subhankadawala8@gmail.com'; // Your Gmail Address
+                        $mail->Password = 'kjiyqofbdrjhiwyd'; // App Password (NOT your regular Gmail password)
                         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                         $mail->Port = 587;
 
-                        $mail->setFrom('snehagauni@gmail.com', 'Dental Care');
+                        $mail->setFrom('subhankadawala8@gmail.com', 'Dental Care');
                         $mail->addAddress($row['emailid']); // Recipient's email
 
                         $mail->isHTML(true);

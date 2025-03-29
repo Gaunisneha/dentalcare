@@ -77,93 +77,246 @@
     ?>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #eef2f3;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            /* padding: 20px; */
+        }
+
+        .container {
+            width: 40%;
+            /* width: 50%; */
+            background: white;
+            padding: 20px;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .input-group input,
+        .input-group textarea,
+        .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .input-group input[type="radio"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .gender-group {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .error {
+            color: red;
+            font-size: 0.9em;
+            margin-top: 3px;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .btn {
+            padding: 12px 20px;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-success:hover {
+            background-color: #218838;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            color: white;
+        }
+        .btn-danger:hover {
+            background-color: #c82333;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+            font-weight: bold;
+        }
+        .alert {
+            color: red;
+            text-align: center;
+        }
+    </style>
+    <!-- <style>
         .form-control {
             border: 1px solid black;
         }
         .form-section {
             margin: 30px 0;
         }
-    </style>
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style> -->
 </head>
 
 <body>
-    <div class="content">
-        <form action="#" method="POST" enctype="multipart/form-data">
-            <main id="main" class="container">
-                <section class="section dashboard">
-                    <div class="row">
-                        <div class="row m-5">
-                            <div class="col-md-4"></div>
-                            <div class="col-md-8">
-                                <h2 class="ps-4">Edit User Profile</h2>
-                                <?php if ($msg) { echo "<p class='alert alert-danger'>$msg</p>"; } ?>
-                            </div>
+<div class="container">
+        <h2>Edit User Profile</h2>
+        <?php if ($msg) { echo "<p class='alert'>$msg</p>"; } ?>
+        <form action="#" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+            
+            <div class="input-group">
+                <label>Username</label>
+                <input type="text" name="username" id="username" value='<?php echo $username ?>' autofocus>
+                <span class="error" id="usernameError"></span>
+            </div>
 
-                            <div class="col-md-6">
-                                <div class="form-section">
-                                    <label class="col-md-3 col-form-label">Username</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="username" value='<?php echo $username ?>' autofocus>
-                                    </div>
-                                </div>
+            <div class="input-group">
+                <label>Email ID</label>
+                <input type="text" name="emailid" id="emailid" value='<?php echo $emailid ?>'>
+                <span class="error" id="emailError"></span>
+            </div>
 
-                                <div class="form-section">
-                                    <label class="col-md-3 col-form-label">Emailid</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="emailid" value='<?php echo $emailid ?>'>
-                                    </div>
-                                </div>
+            <div class="input-group">
+                <label>Contact No</label>
+                <input type="text" name="contactno" id="contactno" value='<?php echo $contactno ?>'>
+                <span class="error" id="contactError"></span>
+            </div>
 
-                                <div class="form-section">
-                                    <label class="col-md-3 col-form-label">Contactno</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="contactno" value='<?php echo $contactno ?>'>
-                                    </div>
-                                </div>
-                            </div>
+            <div class="input-group">
+                <label>Gender</label>
+                <div class="gender-group">
+                    <input type="radio" name="gender" value="Male" <?php echo ($gender == 'Male') ? 'checked' : ''; ?>> Male
+                    <input type="radio" name="gender" value="Female" <?php echo ($gender == 'Female') ? 'checked' : ''; ?>> Female
+                </div>
+            </div>
 
-                            <div class="col-md-6">
-                                <div class="form-section">
-                                    <label class="col-md-3 col-form-label">Gender</label>
-                                    <div class="col-md-9">
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" value="Male" <?php echo ($gender == 'Male') ? 'checked' : ''; ?>>
-                                            <label class="form-check-label">Male</label>
-                                        </div>
-                                        <div class="form-check form-check-inline">
-                                            <input class="form-check-input" type="radio" name="gender" value="Female" <?php echo ($gender == 'Female') ? 'checked' : ''; ?>>
-                                            <label class="form-check-label">Female</label>
-                                        </div>
-                                    </div>
-                                </div>
+            <div class="input-group">
+                <label>Address</label>
+                <textarea name="address" id="address"><?php echo $address ?></textarea>
+                <span class="error" id="addressError"></span>
+            </div>
 
-                                <div class="form-section">
-                                    <label class="col-md-3 col-form-label">Address</label>
-                                    <div class="col-md-9">
-                                        <textarea class="form-control" name="address"><?php echo $address ?></textarea>
-                                    </div>
-                                </div>
+            <div class="input-group">
+                <label>Profile Image</label>
+                <input name="image" type="file" id="image">
+                <span class="error" id="imageError"></span>
+            </div>
 
-                                <div class="form-section">
-                                    <label class="col-md-3 col-form-label">Profile Image</label>
-                                    <div class="col-sm-10">
-                                        <input name="image" type="file" class="form-control" value="<?php echo $filename ?>">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-md-12 text-center">
-                                <input type="submit" class="btn btn-success m-3" name="update" value='Save'>
-                                <input type="submit" class="btn btn-danger m-3" name="cancel" value='Cancel'>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </main>
+            <div class="button-group">
+                <input type="submit" class="btn btn-success" name="update" value='Save'>
+                <input type="submit" class="btn btn-danger" name="cancel" value='Cancel'>
+            </div>
         </form>
     </div>
+
+   
+    </div>
+    <script>
+        function validateInput(input, pattern, errorElement, errorMessage) {
+            if (!pattern.test(input.value)) {
+                errorElement.textContent = errorMessage;
+                return false;
+            } else {
+                errorElement.textContent = "";
+                return true;
+            }
+        }
+
+        document.getElementById("username").addEventListener("input", function() {
+            validateInput(this, /^[A-Za-z\s]{3,}$/, document.getElementById("usernameError"), "Username must be at least 3 characters long and contain only letters.");
+        });
+
+        document.getElementById("contactno").addEventListener("input", function() {
+            validateInput(this, /^\d{10}$/, document.getElementById("contactError"), "Enter a valid 10-digit contact number.");
+        });
+
+        document.getElementById("emailid").addEventListener("input", function() {
+            validateInput(this, /^[^\s@]+@[^\s@]+\.[^\s@]+$/, document.getElementById("emailError"), "Enter a valid email address.");
+        });
+
+        document.getElementById("address").addEventListener("input", function() {
+            validateInput(this, /^.{5,}$/, document.getElementById("addressError"), "Address must be at least 5 characters long.");
+        });
+
+        function validateImage() {
+        var imageInput = document.getElementById("image");
+        var errorElement = document.getElementById("imageError");
+        var file = imageInput.files[0];
+
+        if (!file) {
+            errorElement.textContent = "Please select an image file.";
+            return false;
+        }
+
+        var allowedExtensions = ["jpg", "jpeg", "png", "gif"];
+        var fileExtension = file.name.split('.').pop().toLowerCase();
+        var fileSize = file.size / 1024 / 1024; // Convert size to MB
+
+        if (!allowedExtensions.includes(fileExtension)) {
+            errorElement.textContent = "Only JPG, JPEG, PNG, and GIF files are allowed.";
+            return false;
+        }
+
+        if (fileSize > 2) {
+            errorElement.textContent = "File size must be less than 2MB.";
+            return false;
+        }
+
+        errorElement.textContent = "";
+        return true;
+    }
+
+    document.getElementById("image").addEventListener("change", validateImage);
+
+        function validateForm() {
+            var usernameValid = validateInput(document.getElementById("username"), /^[A-Za-z\s]{3,}$/, document.getElementById("usernameError"), "Username must be at least 3 characters long and contain only letters.");
+            var emailValid = validateInput(document.getElementById("emailid"), /^[^\s@]+@[^\s@]+\.[^\s@]+$/, document.getElementById("emailError"), "Enter a valid email address.");
+            var contactValid = validateInput(document.getElementById("contactno"), /^\d{10}$/, document.getElementById("contactError"), "Enter a valid 10-digit contact number.");
+            var addressValid = validateInput(document.getElementById("address"), /^.{5,}$/, document.getElementById("addressError"), "Address must be at least 5 characters long.");
+
+            if (!usernameValid || !emailValid || !contactValid || !addressValid || !imageValid) {
+                document.getElementById("formError").textContent = "Please fix errors before submitting.";
+                return false;
+            }
+            return true;
+        }
+    </script>
 </body>
 
 </html>
