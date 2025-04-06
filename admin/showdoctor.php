@@ -55,6 +55,7 @@
     ?>
 </head>
 <body>
+    
 <?php include("slider.php"); ?>
 
    <div class="content">

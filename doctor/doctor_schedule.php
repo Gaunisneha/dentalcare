@@ -52,8 +52,7 @@
     </style>
 </head>
 <body>
-
-   <div class="content">
+ 
 
    <form action="#" method="POST">
         <main id="main" class="container">

@@ -24,6 +24,7 @@
 
 </head>
 <body>
+    
    <?php include("slider.php"); ?>
    <div class="content">
    <?php include("header.php"); ?>

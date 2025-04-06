@@ -14,20 +14,15 @@
 
     <?php
         if (!isset($_SESSION['regid']) || !isset($_SESSION['username'])) {
-        header("Location: loginpage.php"); 
+        header("Location: loginpage.php"); // Redirect if session not found
         exit();
-        }
-    
-        if(isset($_POST['back'])){
-            header("location:loginpage.php");
         }
     
         $regid = $_SESSION['regid'];
         $username = $_SESSION['username'];
         $msg = "";
         $dc = new DataClass();
-
-       
+    
         if (isset($_POST['reset'])) {
             $newpassword = trim($_POST['newpassword']);
             $confirmpassword = trim($_POST['confirmpassword']);
@@ -68,13 +63,13 @@
                 <!-- New Password input field -->
                 <div class="mb-3">
                     <label for="newpassword" class="form-label">New Password:</label>
-                    <input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="Enter new password">
+                    <input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="Enter new password" required>
                 </div>
 
                 <!-- Confirm Password input field -->
                 <div class="mb-3">
                     <label for="confirmpassword" class="form-label">Confirm Password:</label>
-                    <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Confirm new password">
+                    <input type="password" class="form-control" id="confirmpassword" name="confirmpassword" placeholder="Confirm new password" required>
                 </div>
 
                 <!-- Submit button -->
@@ -83,9 +78,13 @@
                 <?php echo $msg ?>
                 </div>
                 <div class="mb-3">
-                <input type="submit" name="back" id="back" class="btn btn-danger "value="Login" ></input>
+                <input type="submit" name="back" class="btn btn-danger "value="Login" ></button>
                 </div>
             </form>
+
+            <!-- Display message for errors or success -->
+            
+
         </div>
     </div>
 </div>
@@ -96,3 +95,4 @@
 
 </body>
 </html>
+ 

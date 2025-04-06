@@ -61,11 +61,39 @@ if (isset($_POST['cancel'])){
         body {
             background-color: #f8f9fa;
             padding: 50px;
+            font-family: 'Arial', sans-serif;
         }
 
         .card {
             max-width: 500px;
             margin: auto;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .card-body {
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 8px;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            padding: 12px 15px;
+            font-size: 16px;
         }
 
         .form-control:focus {
@@ -73,9 +101,50 @@ if (isset($_POST['cancel'])){
             box-shadow: 0 0 0 0.25rem rgba(38, 143, 255, 0.5);
         }
 
+        .btn {
+            width: 48%;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
         .btn-primary {
             background-color: #0056b3;
             border-color: #0056b3;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-primary:hover {
+            background-color: #004085;
+            border-color: #003366;
+        }
+
+        .btn-danger:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+
+        .alert {
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 576px) {
+            .card {
+                width: 100%;
+                margin: 0;
+            }
+
+            .btn {
+                width: 100%;
+                margin-top: 10px;
+            }
         }
     </style>
 </head>

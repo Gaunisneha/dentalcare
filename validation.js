@@ -22,6 +22,16 @@ function onlyalpha(id,msg){
         msg.innerHTML="";
     }
 }
+function showError(inputId, message) {
+    var errorSpan = document.getElementById(inputId);
+    if (message) {
+        errorSpan.innerText = message;
+        errorSpan.style.visibility = "visible";
+    } else {
+        errorSpan.innerText = "";
+        errorSpan.style.visibility = "hidden";
+    }
+}
 
 // function validatePassword(id, msg) {
 //     var data = id.value.trim();

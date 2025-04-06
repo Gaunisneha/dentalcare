@@ -9,14 +9,14 @@
     
     <?php 
     include_once('../class/dataclass.php'); 
-    session_start();
+    // session_start();
     ob_start();
    
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
     require '../vendor/autoload.php';
     ?>
-
+    <?php   include("header.php") ?>
     <?php
         $regid="";
         $username="";
@@ -52,12 +52,12 @@
                         $mail->isSMTP();
                         $mail->Host = 'smtp.gmail.com';
                         $mail->SMTPAuth = true;
-                        $mail->Username = 'subhankadawala8@gmail.com'; // Your Gmail Address
-                        $mail->Password = 'kjiyqofbdrjhiwyd'; // App Password (NOT your regular Gmail password)
+                        $mail->Username='manasiyamosinali1@gmail.com';             
+                        $mail->Password ='rzjdcgybzphcttog'; 
                         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                         $mail->Port = 587;
 
-                        $mail->setFrom('subhankadawala8@gmail.com', 'Dental Care');
+                        $mail->setFrom('manasiyamosinali1@gmail.com', 'Dental Care');
                         $mail->addAddress($row['emailid']); // Recipient's email
 
                         $mail->isHTML(true);
@@ -85,7 +85,6 @@
     ?>
 </head>
 <body>
-<?php include("header.php"); ?>
 
 <!-- Main container for centering the form -->
 <div class="container d-flex justify-content-center align-items-center min-vh-100">

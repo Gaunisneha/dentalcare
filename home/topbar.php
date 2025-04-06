@@ -10,10 +10,10 @@
             <div class="col-md-6 text-center text-lg-end">
                 <div class="position-relative d-inline-flex align-items-center bg-primary text-white top-shape px-5">
                     <div class="me-3 pe-3 border-end py-2">
-                        <p class="m-0"><i class="fa fa-envelope-open me-2"></i>dentalcare@gmail.com</p>
+                        <!-- <p class="m-0"><i class="fa fa-envelope-open me-2"></i></p> -->
                     </div>
                     <div class="py-2">
-                        <p class="m-0"><i class="fa fa-phone-alt me-2"></i>+91 8754875692</p>
+                        <p class="m-0"><i class="fa fa-phone-alt me-2"></i>+91 7043824447</p>
                     </div>
                 </div>
             </div>

@@ -294,6 +294,7 @@
 </head>
 
 <body>
+  
 
 <div class="container mt-5">
         <h2 class="text-center">🦷 Update Dentist Profile</h2>

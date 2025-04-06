@@ -6,6 +6,7 @@
      include("csslink.php");
      include("../class/dataclass.php");
      ?>
+
      <?php
         $regid="";
         $dc= new dataclass();
@@ -33,17 +34,36 @@
         $regid=$_POST['bdelete'];
         $query="delete from  registration where regid='$regid'";
         $result=$dc->deleterecord($query);
-        if($result)
-        {
-            $msg="Delete record Successfully...";
-        }
-        else{
-            $msg="Record not deleted...";
+        if ($result) {
+            echo "<script>
+                Swal.fire({
+                    icon: 'success',
+                    title: ' Deleted!',
+                    confirmButtonColor: '#3085d6',
+                    confirmButtonText: 'OK'
+                }).then(() => {
+                    window.location.href = 'showregistration.php';
+                });
+            </script>";
+            exit();
+        } else {
+            echo "<script>
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Deletion Failed!',
+                    confirmButtonColor: '#d33',
+                    confirmButtonText: 'OK'
+                });
+            </script>";
+            exit();
         }
     }
+    
     ?>
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+    
 <?php include("slider.php"); ?>
 
    <div class="content">

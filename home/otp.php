@@ -13,7 +13,7 @@
 
 </head>
 <body>
-   <?php include("header.php"); ?>
+
 <!-- Main container for centering the form -->
 <div class="container d-flex justify-content-center align-items-center min-vh-100">
 
@@ -34,14 +34,14 @@
                 </div>
 
                 <!-- Submit button -->
-                <input type="submit" name="verifyotp" class="btn btn-primary w-100" value="Verify OTP"></input>
+                <input type="submit" name="verifyotp" class="btn btn-primary w-100" value="Verify OTP"><a href="./loginpage.php"></a></input>
             </form>
 
             <!-- Message for errors or success -->
             <?php 
             if (isset($_POST['verifyotp'])) {
                 $enteredOtp = $_POST['otp'];
-
+                
                 // Check if the entered OTP matches the OTP stored in session
                 if ($enteredOtp == $_SESSION['otp']) {
                     // echo '<div class="alert alert-success mt-3">OTP Verified Successfully! You can now reset your password.</div>';

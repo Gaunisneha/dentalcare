@@ -6,6 +6,7 @@
     $adminid= $_SESSION['adminid'] ; 
     $adminname= $_SESSION['adminname']; 
      ?>
+     
 <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
@@ -30,7 +31,9 @@
                     <a href="showappointment.php" class="nav-item nav-link"><i class="fa fa-calendar-check"></i>Appointments</a>
                     <a href="showschedule.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Doctor Schedule</a>
                     <a href="showfeedback.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Feedback</a>
-                    <a href="showemail.php" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Reminder</a>
+                    <a href="showpayment.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>payment</a>
+                    <a href="showservices.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>services</a>
+                    <a href="send_reminder.php" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Reminder</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Contact Us</a>
                         <div class="dropdown-menu bg-transparent border-0">

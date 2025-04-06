@@ -64,7 +64,10 @@ class dataclass
             return false;
         }
     }
-
+    public function getrecord($query) {
+        $result = mysqli_query($this->conn, $query);
+        return mysqli_fetch_assoc($result); // Returns a single record
+    }
 
 //     function formvalidation()
 //     {

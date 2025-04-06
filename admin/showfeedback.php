@@ -18,8 +18,8 @@
     
     if(isset($_POST['bdelete']))
     {
-        $fdid=$_POST['bdelete'];
-        $query="delete from  feedback where fdid='$fbid'";
+        $fbid=$_POST['bdelete'];
+        $query="delete from  feedback where fbid='$fbid'";
         $result=$dc->deleterecord($query);
         if($result)
         {
@@ -32,6 +32,7 @@
     ?>
 </head>
 <body>
+  
 <?php include("slider.php"); ?>
    <div class="content">
    <?php include("header.php"); ?>

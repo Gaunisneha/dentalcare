@@ -13,7 +13,9 @@ $schedules = $dc->gettable($query);
     <title>Doctor Schedules</title>
     <?php include("csslink.php"); ?>
 </head>
-<<?php include("slider.php"); ?>
+<body>
+    
+    <?php include("slider.php"); ?>
    <div class="content">
    <?php include("header.php"); ?>
     <div class="container mt-4">

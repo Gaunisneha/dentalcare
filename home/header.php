@@ -2,7 +2,7 @@
  <html lang="en">
  <head>
     <?php
-    // session_start();
+    session_start();
     ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +21,7 @@
             <div class="navbar-nav ms-auto py-0">
                 <a href="mainhome.php" class="nav-item nav-link">Home</a>
                 <a href="about.php" class="nav-item nav-link">About</a>
-                <a href="doctor.php" class="nav-item nav-link">Doctor</a>
+                <a href="doctor.php" class="nav-item nav-link">Dentist</a>
                 <a href="service.php" class="nav-item nav-link">Service</a>
                 <a href="contact.php" class="nav-item nav-link">Contact</a>
                 <a href="profiletem.php" class="nav-item nav-link">Profile</a>
@@ -30,7 +30,7 @@
                     <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="bi bi-person-circle"></i></a>
                     <div class="dropdown-menu m-0">
                         <!-- <a href="../home/mainhome.php">Patient</a><br> -->
-                        <a href="../doctor/doctorlogin.php">Doctor</a><br>
+                        <a href="../doctor/doctorlogin.php">Dentist</a><br>
                         <a href="../admin/adminlogin.php">Admin</a>
                     </div>
                 </div>

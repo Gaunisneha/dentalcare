@@ -44,6 +44,7 @@
     ?>
 </head>
 <body>
+    
 <?php include("slider.php"); ?>
 
    <div class="content">
@@ -73,7 +74,7 @@
                         <th>APPDATE</th>
                         <th>APPTIME</th>
                         <th>REMARK</th>
-                        <th>STATUS</th>
+                        <!-- <th>STATUS</th> -->
                         <th>DELETE</th>
                         <th>UPDATE</th>
                     </tr>
@@ -93,7 +94,7 @@
                         echo("<td>".$rw['appdate']."</td>");
                         echo("<td>".$rw['apptime']."</td>");
                         echo("<td>".$rw['remark']."</td>");
-                        echo("<td>".$rw['status']."</td>");
+                        // echo("<td>".$rw['status']."</td>");
                         echo("<td><button class='btn btn-danger btn-sm' type='submit' name='bdelete' value=".$rw['appid'].">
                         <i class='fas fa-trash-alt'></i></button></td>");
                         echo("<td><button class='btn btn-warning btn-sm' type='submit' name='bupdate' value=".$rw['appid'].">

@@ -5,7 +5,7 @@
 <?php   include("topbar.php") ?> 
 <?php   include("header.php") ?> 
 <?php
-    session_start();
+    // session_start();
     include ("../class/dataclass.php");
      
      ?>
@@ -27,12 +27,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <?php   include("csslink.php") ?>
     
 </head>
-
-
 <body>
 <script>
     
@@ -179,6 +176,7 @@ function validateEmail() {
         $emailid=$_POST['emailid'];
         $appdate=$_POST['appdate'];
         $apptime = date("H:i:s", strtotime($_POST['apptime']));
+        $price = isset($_POST['price']) ? $_POST['price'] : 0; 
         // $apptime=$_POST['apptime'];
         $remark=$_POST['remark'];
         
@@ -200,27 +198,66 @@ function validateEmail() {
             exit();
         }
 
+        $query = "INSERT INTO `appointment`(`appfor`, `docid`, `patientname`, `emailid`, `appdate`, `apptime`, `price`, `remark`, `status`) 
+        VALUES ('$appfor', '$docid', '$patientname', '$emailid', '$appdate', '$apptime', '$price', '$remark', 'Pending')";
         
-        $query="INSERT INTO `appointment`(`appfor`, `docid`, `patientname`,`emailid`, `appdate`, `apptime`, `remark`, `status`) VALUES ('$appfor','$docid','$patientname','$emailid','$appdate','$apptime','$remark','Pending')";
-        $result=$dc->insertrecord($query);
+$result = $dc->insertrecord($query);
 
-        if($result)
-        {
-            echo "<script>
-                    Swal.fire({
-                        icon: 'success',
-                        title: 'Appointment Booked!',
-                        text: '✅ Your appointment has been successfully scheduled.',
-                        confirmButtonColor: '#28a745',
-                        confirmButtonText: 'OK'
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                            window.location.href='appointment.php';
-                        }
-                    });
-                  </script>";
-            //  $msg="Appointment booked successfully";
-        }
+if ($result) {
+
+    
+    // Assuming $dc->conn is the database connection
+
+  // Store appointment details in session
+  $_SESSION['appointment_details'] = [
+    //   'appid' => $appointment_id, // Store appid
+      'patientname' => $patientname,
+      'emailid' => $emailid,
+      'docname' => $dc->gettable("SELECT docname FROM dentist WHERE docid='$docid'"), // Fetch doctor name
+      'service' => $appfor,
+      'appdate' => $appdate,
+      'apptime' => $apptime,
+      'price' => $price,
+      'remark' => $remark
+  ];
+  
+  
+  // Show success message and redirect
+  echo "<script>
+      Swal.fire({
+          icon: 'success',
+          title: 'Appointment Booked!',
+          text: '✅ Your appointment has been successfully scheduled.',
+          confirmButtonColor: '#28a745',
+          confirmButtonText: 'OK'
+      }).then((result) => {
+          if (result.isConfirmed) {
+              window.location.href='appointment_confirmation.php';
+          }
+      });
+  </script>";
+  exit();
+}
+
+        
+        // if($result)
+        // {
+        //     echo "<script>
+        //             Swal.fire({
+        //                 icon: 'success',
+        //                 title: 'Appointment Booked!',
+        //                 text: '✅ Your appointment has been successfully scheduled.',
+        //                 confirmButtonColor: '#28a745',
+        //                 confirmButtonText: 'OK'
+        //             }).then((result) => {
+        //                 if (result.isConfirmed) {
+        //                     window.location.href='appointment_confirmation.php';
+        //                 }
+        //             });
+        //           </script>";
+        //           $_SESSION['price']=$price;
+        //     //  $msg="Appointment booked successfully";
+        // }
         else
         {
             echo "<script>
@@ -260,7 +297,19 @@ else
 }
     }
      ?>
-
+  <!-- Spinner Start -->
+  <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary m-1" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-dark m-1" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+        <div class="spinner-grow text-secondary m-1" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
     <!-- Appointment Start -->
 <div class="container-fluid bg-primary bg-appointment my-5 wow fadeInUp" data-wow-delay="0.1s">
         <div class="container">
@@ -279,41 +328,21 @@ else
                                 <div class="col-12 col-sm-6">
                                     <select name="appfor"  id="appfor" class="form-select bg-light border-0" style="height: 55px;">
                                         <option selected>Select Service</option>
-                                        <?php
-                                        $query2="select serviceid,servicename from services ";
-                                        $tb=$dc->gettable($query2);
-                                        while($rw=mysqli_fetch_array($tb))
-                                        {
-                                            if($serviceid==$rw['serviceid'])
-                                            {
-                                                echo"<option value=".$rw['servicename'].">".$rw['servicename']."</option>";
-                                            }
-                                            else
-                                            {
-                                                echo"<option value=".$rw['servicename'].">".$rw['servicename']."</option>";
-                                            }
-                                        }
-                                        ?>
+                                       
                                     </select>
                                     <small id="serviceError" class="error-message"></small>
 
                                 </div>
                                 <div class="col-12 col-sm-6">
-                                    <select name="doctors" id="doctors" class="form-select bg-light border-0" style="height: 55px;">
+                                    <select name="doctors" id="doctors" class="form-select bg-light border-0" style="height: 55px;" onchange="fetchServices()">
                                     <option selected>Select Doctor</option>
                                         <?php
                                         $query1="select docid,docname from dentist where status='Active'";
                                         $tb=$dc->gettable($query1);
                                         while($rw=mysqli_fetch_array($tb))
                                         {
-                                            if($docid==$rw['docid'])
-                                            {
-                                                echo"<option value=".$rw['docid'].">".$rw['docname']."</option>";
-                                            }
-                                            else
-                                            {
-                                                echo"<option value=".$rw['docid'].">".$rw['docname']."</option>";
-                                            }
+                                            echo "<option value='{$rw['docid']}'>{$rw['docname']}</option>";
+
                                         }
                                         ?>
                                     </select>
@@ -344,7 +373,10 @@ else
                                             <small id="timeError" class="error-message"></small>
                                     </div>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-12 col-sm-6">
+                                    <input type="text" class="form-control bg-light border-0" id="price" name="price" placeholder="Price" style="height: 55px;" readonly>
+                                </div>
+                                <div class="col-12 col-sm-6">
                                     <input type="textarea" class="form-control bg-light border-0" name="remark" placeholder="Your Remark" style="height: 55px; ">
                                 </div>
                                 
@@ -353,6 +385,7 @@ else
                                 </div>
                                 <!-- <p class="text-white"></p> -->
                                 <?php echo $msg ?>
+                                
                             </div>
                         </form>
                     </div>
@@ -360,6 +393,42 @@ else
             </div>
         </div>
     </div>
+    <script>
+   function updatePrice() {
+    let serviceDropdown = document.getElementById("appfor");
+    let priceField = document.getElementById("price");
+
+    let selectedOption = serviceDropdown.options[serviceDropdown.selectedIndex];
+    let price = selectedOption.getAttribute("data-price") || "";
+
+    priceField.value = price;
+}
+
+document.getElementById("appfor").addEventListener("change", updatePrice);
+
+    function fetchServices() {
+    let doctorId = document.getElementById("doctors").value;
+    let serviceDropdown = document.getElementById("appfor");
+
+    if (doctorId === "Select Doctor") {
+        serviceDropdown.innerHTML = "<option selected>Select Service</option>";
+        return;
+    }
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "fetch_services.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            serviceDropdown.innerHTML = xhr.responseText;
+            updatePrice(); // Update price if necessary
+        }
+    };
+
+    xhr.send("doctorId=" + doctorId);
+}
+</script>
     <!-- Appointment End -->
     <?php   include("footer.php") ?> 
     <?php   include("jsslink.php") ?> 

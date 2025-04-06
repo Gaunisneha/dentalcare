@@ -56,16 +56,18 @@ form{
 }
 .input-box{
     position: relative;
-    margin: 30px 0;
+    margin: 15px 0;
+    width: 100%;
+    /* margin: 30px 0; */
 }
 .input-box input{
     width: 100%;
-    padding: 10px 45px 10px 20px;
+    padding: 12px 40px 12px 15px;
     background: #eee;
     border-radius: 8px;
     border: none;
     outline: none;
-    font-size: 15px;
+    font-size: 16px;
     color: #333;
     font-weight: 500; 
 }
@@ -75,9 +77,11 @@ form{
 }
 .input-box i{
     position: absolute;
-    right: 20px;
+    right: 15px;
     top: 50%;
     transform: translateY(-50%);   
+    font-size: 18px;
+    color: #666;
 }
 
 .forgot-link{

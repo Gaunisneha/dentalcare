@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <?php
+include 'header.php';
+?>
   <?php 
-session_start(); // Ensure session is started at the beginning of the file
+ // Ensure session is started at the beginning of the file
 try {
     include ("../class/dataclass.php");
     $dc = new dataclass();
@@ -181,10 +184,7 @@ try {
 <!------ Include the above in your HEAD tag ---------->
  <?php
  include 'csslink.php';?>
- <?php
-include 'header.php';
 
-?>
 <div class="container emp-profile">
     <h1 class="p-4">PROFILE:</h1>
             <form method="post">
@@ -276,7 +276,10 @@ include 'header.php';
                                             <div class="col-md-4">
                                             <a href="../home/mainhome.php"><input type="button"   class="profile-edit-btn" name="btnAddMore" value="Exit"/></a>
                                             </div> 
+
                                             <div class="col-md-4">
+                                            <a href="../home/appointment_confirmation.php"><input type="button"   class="profile-edit-btn" name="btnAddMore" value="VAIEW APPOINTMENT"/></a>
+
                                           </div>
                                         </div>
                                       

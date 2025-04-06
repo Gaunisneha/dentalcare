@@ -86,6 +86,7 @@
     }
   }
   ?>
+  
   <!-- <script>
     function formvalidation(){
         var result=true;
@@ -96,6 +97,7 @@
     }
     </script> -->
   <body>
+    
     <div class="container">
         <div class="form-box login">
             <form action="" method="POST" onsubmit="return validateLoginForm()">
@@ -130,17 +132,17 @@
                 <h1>Sign Up</h1>
                 <div class="input-box">
                     <input type="text" name="username" id="username" placeholder="Username"  onchange="onlyalpha(this,lusername)" onkeyup="onlyalpha(this,lusername)">
-                    <span id="lusername"></span>
+                    <span id="lusername" class="error" id="usernameError"></span>
                     <i class='bx bxs-user'></i>
                 </div>
                 <div class="input-box">
                     <input type="email" name="emailid" id="emailid" placeholder="Email" onchange="validateEmail(this,lemail)" onkeyup="validateEmail(this,lemail)">
-                    <span id="lemail"></span>
+                    <span id="lemail" class="error" id="emailError" ></span>
                     <i class='bx bxs-envelope'></i>
                 </div>
                 <div class="input-box">
                     <input type="text" name="contactno" id="contactno" placeholder="Contact" onchange="validateContactNo(this,lcontact)" onkeyup="validateContactNo(this,lcontact)">
-                    <span id="lcontact"></span>
+                    <span id="lcontact" class="error"></span>
                     <i class='bx bxs-phone'></i>
                 </div>
                 <div class="input-box">

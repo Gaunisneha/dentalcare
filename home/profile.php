@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    
 
 <head>
     <?php
@@ -195,6 +196,7 @@
 </head>
 
 <body>
+      
 <div class="container">
         <h2>Edit User Profile</h2>
         <?php if ($msg) { echo "<p class='alert'>$msg</p>"; } ?>
@@ -241,6 +243,7 @@
             <div class="button-group">
                 <input type="submit" class="btn btn-success" name="update" value='Save'>
                 <input type="submit" class="btn btn-danger" name="cancel" value='Cancel'>
+            
             </div>
         </form>
     </div>

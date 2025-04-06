@@ -1,61 +1,83 @@
+<?php
+// session_start();
+
+// UPI Payment Details
+$upi_id = "manasiyamosinali1-1@oksbi";  
+$name = "mosinali";  
+$amount = number_format((float) $_SESSION['price'], 2, '.', ''); 
+$currency = "INR"; 
+$aid = "uGICAgMDcgcajQQ";  
+
+// Generate UPI Payment Link
+$upi_link = "upi://pay?pa=$upi_id&pn=" . urlencode($name) . "&am=" . urlencode($amount) . "&cu=" . urlencode($currency) . "&aid=" . urlencode($aid);
+
+// Generate QR Code
+$qr_code_url = "https://quickchart.io/qr?text=" . urlencode($upi_link) . "&size=250";
+
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Appointment Payment</title>
-    <link rel="stylesheet" href="./css/payment.css">
-    <link href="img/favicon.ico" rel="icon">
+    <title>UPI Payment</title>
+  
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
 
-<!-- Google Web Fonts -->
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet"> 
+    <style>
+        body { font-family: Arial, sans-serif; background: #e9ecef; }
+        .container { max-width: 500px; margin-top: 50px; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); }
+        .btn-upi { background: rgb(23, 197, 255); color: white; font-weight: bold; padding: 12px 20px; border: none; border-radius: 5px; transition: background 0.3s; width: 100%; }
+        .btn-upi:hover { background: rgb(18, 161, 217); }
+        .qr-code { text-align: center; margin-top: 20px; }
+        .timer { font-size: 20px; font-weight: bold; color: red; text-align: center; margin-bottom: 15px; }
+        .a{ background-color:blue;}
+        
+    </style>
 
-<!-- Icon Font Stylesheet -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <script>
+        let timeLeft = 300;  // 5 minutes countdown (300 seconds)
 
-    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+        function startTimer() {
+            let timerInterval = setInterval(function() {
+                let minutes = Math.floor(timeLeft / 60);
+                let seconds = timeLeft % 60;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                document.getElementById("countdown").innerText = minutes + ":" + seconds;
+
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    window.location.href = "appointment.php";  // Redirect after 5 minutes
+                }
+                timeLeft--;
+            }, 1000);
+        }
+    </script>
 </head>
-<body>
-    <div class="container">
-        <h2><i class="fas fa-calendar-check"></i> Book an Appointment</h2>
-        <form action="checkout.php" method="POST">
-            
-            <div class="input-group">
-                <input type="text" name="name" placeholder="Full Name" required>
-                <i class="fas fa-user"></i>
-            </div>
+<body onload="startTimer()" >
 
-            <div class="input-group">
-                <input type="email" name="email" placeholder="Email Address" required>
-                <i class="fas fa-envelope"></i>
-            </div>
+    <div class="container text-center">
+        <h2 class="mb-3">Complete Your Payment</h2>
 
-            <div class="input-group">
-                <input type="text" name="phone" placeholder="Phone Number" required>
-                <i class="fas fa-phone"></i>
-            </div>
+        <!-- Timer -->
+        <div class="timer">Time Left: <span id="countdown">5:00</span></div>
 
-            <div class="input-group">
-                <input type="date" name="appointment_date" required>
-            </div>
-            <div class="input-group">
-                <select name="payment_method" required>
-                    <option value="stripe">💳 Credit/Debit Card (Stripe)</option>
-                    <option value="paypal">💰 PayPal</option>
-                    <option value="razorpay">🏦 UPI / Net Banking (Razorpay)</option>
-                </select>
+        <!-- UPI Payment Link -->
+        <a href="<?= htmlspecialchars($upi_link); ?>" class="btn-upi d-block text-center mb-3">
+            Pay ₹<?php echo htmlspecialchars($amount); ?> via UPI
+        </a>
 
-            </div>
-
-            <div class="input-group">
-                <input type="number" name="amount" placeholder="Amount ($)" required>
-                <i class="fas fa-rupee-sign"></i>
-            </div>
-
-            <button type="submit"><i class="fas fa-credit-card"></i> Proceed to Payment</button>
-        </form>
+        <!-- QR Code -->
+        <div class="qr-code">
+            <p>Or scan the QR code:</p>
+            <img src="<?= htmlspecialchars($qr_code_url); ?>" alt="UPI QR Code">
+        </div>
+        
     </div>
+
 </body>
 </html>

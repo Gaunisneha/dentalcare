@@ -33,6 +33,7 @@
   }?>
 </head>
 <body>
+  
 <?php include("slider.php"); ?>
    <div class="content">
    <?php include("header.php"); ?>
@@ -44,7 +45,7 @@
           echo("<table class='table table-bordered'>");
           echo("<thead><tr>");
           echo("<th>Appid</th><th>AppDate</th><th>patientname</th><th>Email Address</th><th>Status</th><th>OPTION</th>");
-               $query="select appid,appdate,patientname,emailid,status from appointment where status='active'";
+               $query="select appid,appdate,patientname,emailid,status from appointment where status='Paid'";
                $tb=$dc->gettable($query);
                echo("<tbody>");
                while($rw=mysqli_fetch_array($tb))

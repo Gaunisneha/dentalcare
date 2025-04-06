@@ -99,6 +99,16 @@
         }
         
     ?>
+    <?php    
+        if(isset($_POST['bcancel']))
+        {
+            $_SESSION['trans']='cancel';
+            header ('location:showdoctor.php');
+        
+        }
+
+       
+?>
    
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -155,8 +165,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
-
-
+ 
 
 
    <!-- <div class="content">

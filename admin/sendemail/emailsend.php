@@ -19,12 +19,12 @@ try {
     $mail->isSMTP();
     $mail->Host= 'smtp.gmail.com';                     
     $mail->SMTPAuth=true;                                   
-    $mail->Username='snehagauni@gmail.com';             
-    $mail->Password ='gbxczjdfvxxebvuc';                 
+    $mail->Username='manasiyamosinali1@gmail.com';              // Replace with your email
+    $mail->Password ='rzjdcgybzphcttog';              
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         
     $mail->Port=587;                                   
     
-    $mail->setFrom('snehagauni@gmail.com','sneha');
+    $mail->setFrom('manasiyamosinali1@gmail.com','mosinali');
     $mail->addAddress($emailto,$username);     
 
    

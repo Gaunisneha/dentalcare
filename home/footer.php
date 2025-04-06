@@ -14,10 +14,10 @@
                 <div class="col-lg-3 col-md-6">
                 <h3 class="text-white mb-4">Our Services</h3>
                 <div class="d-flex flex-column">
-                    <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Dental Checkups</a>
-                    <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Teeth Whitening</a>
-                    <a class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Root Canal Treatment</a>
-                    <a class="text-light" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Braces & Aligners</a>
+                    <div class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Dental Checkups</div>
+                    <div class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Teeth Whitening</div>
+                    <div class="text-light mb-2" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Root Canal Treatment</div>
+                    <div class="text-light" href="#"><i class="bi bi-arrow-right text-primary me-2"></i>Braces & Aligners</div>
                 </div>
             </div>
                 <!-- <div class="col-lg-3 col-md-6">
