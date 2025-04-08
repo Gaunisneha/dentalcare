@@ -21,38 +21,13 @@ function onlyalpha(id,msg){
     else{
         msg.innerHTML="";
     }
-}
-function showError(inputId, message) {
-    var errorSpan = document.getElementById(inputId);
-    if (message) {
-        errorSpan.innerText = message;
-        errorSpan.style.visibility = "visible";
-    } else {
-        errorSpan.innerText = "";
-        errorSpan.style.visibility = "hidden";
-    }
-}
-
-// function validatePassword(id, msg) {
-//     var data = id.value.trim();
-//     var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])[A-Za-z0-9@$!%*?&]{8}$/;
-//     if (data === "") {
-//         msg.innerHTML = ""; // Remove error if empty
-//     } 
-//     else if (!passwordPattern.test(data)) {
-//         msg.innerHTML = "Password must be at least 8 characters long and contain both uppercase & lowercase letters";
-//     } 
-//     else {
-//         msg.innerHTML = "";
-//     }
-// }
-    
+}    
 function validatePassword(id, msg) {
     var data = id.value.trim();
     var passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     
     if (data === "") {
-        msg.innerHTML = ""; // Remove error if empty
+        msg.innerHTML = ""; 
     } 
     else if (!passwordPattern.test(data)) {
         msg.innerHTML = "Password must be at least 8 characters, contain an uppercase letter, lowercase letter, number, and special character.";
@@ -69,7 +44,7 @@ function validateConfirmPassword() {
     var msg = document.getElementById("lcpassword");
 
     if (cpassword === "") {
-        msg.innerHTML = ""; // Remove error if empty
+        msg.innerHTML = ""; 
     } else if (password !== cpassword) {
         msg.innerHTML = "Passwords do not match";
     } else {

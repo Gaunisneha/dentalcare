@@ -10,7 +10,7 @@
 <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
-                <h3 class="m-0 text-primary"><i class="fa fa-tooth me-2"></i>Dental care</h3>
+                <h3 class="m-0 text-primary"><i class="fa fa-tooth me-2"></i>Dental Care</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -26,13 +26,13 @@
                     <a href="adminhome.php" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
                     </div>
-                    <a href="showdoctor.php" class="nav-item nav-link"><i class="fa fa-user-nurse"></i>Doctors</a>
+                    <a href="showdoctor.php" class="nav-item nav-link"><i class="fa fa-user-nurse"></i>Dentist</a>
                     <a href="showregistration.php" class="nav-item nav-link"><i class="fa fa-users"></i>User Data</a>
                     <a href="showappointment.php" class="nav-item nav-link"><i class="fa fa-calendar-check"></i>Appointments</a>
-                    <a href="showschedule.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Doctor Schedule</a>
+                    <a href="showschedule.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Dentist Schedule</a>
                     <a href="showfeedback.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Feedback</a>
-                    <a href="showpayment.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>payment</a>
-                    <a href="showservices.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>services</a>
+                    <a href="showpayment.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Payment</a>
+                    <a href="showservices.php" class="nav-item nav-link"><i class="fa fa-table me-2"></i>Services</a>
                     <a href="send_reminder.php" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Reminder</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Contact Us</a>

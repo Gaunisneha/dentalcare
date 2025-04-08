@@ -71,9 +71,9 @@ if(isset($_POST['btn']))
             </div>
             <input class="btn mt-3" type="submit" name="btn" value="Login">
         </form>
-        <div class="text-center fs-6">
+        <!-- <div class="text-center fs-6">
             <a href="#">Forget password?</a> 
-        </div>
+        </div> -->
        <div class="text-center fs-6">
        <span class='p-3'> <?php echo $msg ?></span>
         </div>

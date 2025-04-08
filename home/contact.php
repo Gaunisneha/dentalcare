@@ -80,7 +80,7 @@
                             <i class="bi bi-envelope-open fs-1 text-primary me-3"></i>
                             <div class="text-start">
                                 <h5 class="mb-0">Email Us</h5>
-                                <span>dentalcare1@gmail.com</span>
+                                <span>subhankadawala8@gmail.com</span>
                             </div>
                         </div>
                         <div class="d-flex align-items-center">

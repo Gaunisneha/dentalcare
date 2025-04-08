@@ -23,28 +23,20 @@
         
         }
 
-        if(isset($_POST['aprove']))
-        {
-            $docid=$_POST['aprove'];
-            
-            $query = "update services set status='Active' where serviceid='$serviceid'";
-            $result = $dc->updaterecord($query);
-            
-            
-        }
+        
 
 
     if(isset($_POST['bupdate']))
     {
-        $docid=$_POST['bupdate'];
+        $serviceid=$_POST['bupdate'];
         $_SESSION['serviceid']=$serviceid;
         $_SESSION['trans']='update';
         header('location:servicesform.php');
     }
     if(isset($_POST['bdelete']))
     {
-        $docid=$_POST['bdelete'];
-        $query="delete from  services where serviceid='$serviceid'";
+        $serviceid=$_POST['bdelete'];
+        $query="delete from services where serviceid='$serviceid'";
         $result=$dc->deleterecord($query);
         if($result)
         {
@@ -90,7 +82,7 @@
                         <th>SERVICEID</th>
                         <th>SERVICENAME</th>
                         <th>PRICE</th>
-                        <th>DOC-ID</th>
+                        <!-- <th>DOC-ID</th> -->
                         <!-- <th>STATUS</th> -->
                         <th>OPRATION</th>
                         
@@ -106,7 +98,7 @@
                         echo("<td>".$rw['serviceid']."</td>");
                         echo("<td>".$rw['servicename']."</td>");
                         echo("<td>".$rw['price']."</td>");
-                        echo("<td>".$rw['docid']."</td>");
+                        // echo("<td>".$rw['docid']."</td>");
                         echo("<td><button class='btn btn btn-danger btn-sm me-2' type='submit' name='bdelete' value=".$rw['serviceid'].">
                          <i class='fas fa-trash-alt'></i></button>");
                         echo("<button class='btn btn-warning btn-sm' type='submit' name='bupdate' value=".$rw['serviceid'].">

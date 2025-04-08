@@ -43,6 +43,7 @@
     }
     ?>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <body>
     
 <?php include("slider.php"); ?>
@@ -76,7 +77,7 @@
                         <th>REMARK</th>
                         <!-- <th>STATUS</th> -->
                         <th>DELETE</th>
-                        <th>UPDATE</th>
+                        <!-- <th>UPDATE</th> -->
                     </tr>
                     </thead>
                     <tbody id="myTable">
@@ -95,22 +96,47 @@
                         echo("<td>".$rw['apptime']."</td>");
                         echo("<td>".$rw['remark']."</td>");
                         // echo("<td>".$rw['status']."</td>");
-                        echo("<td><button class='btn btn-danger btn-sm' type='submit' name='bdelete' value=".$rw['appid'].">
+                        echo("<td><button class='btn btn-danger btn-sm' type='button' name='bdelete' value=".$rw['appid'].">
                         <i class='fas fa-trash-alt'></i></button></td>");
-                        echo("<td><button class='btn btn-warning btn-sm' type='submit' name='bupdate' value=".$rw['appid'].">
-                         <i class='fas fa-edit'></i></button></td>");
+                        // echo("<td><button class='btn btn-warning btn-sm' type='button' name='bupdate' value=".$rw['appid'].">
+                        //  <i class='fas fa-edit'></i></button></td>");
                         echo("</tr>");
                         $count++;
                     }
                     ?>
                     </tbody>
                     </table>
-                    <span>Total Appointments:<?php echo($count)?></span>
+                    <script>
+$(document).ready(function() {
+    $('.delete-btn').on('click', function() {
+        var appid = $(this).data('appid');
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this appointment deletion!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, delete it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $('#deleteAppId').val(appid);  // Set hidden input
+                $('form').submit();            // Submit form
+            }
+        });
+    });
+});
+</script>
+
+                    <span>Total Appointments: <?php echo($count)?></span>
                     </div>
                   </div>
             </section>       
 </main>
     </form>
+    <input type="hidden" name="bdelete" id="deleteAppId">
+    <input type="hidden" name="bupdate" id="updateAppId">
     <?php include("footer.php"); ?>
    </div>
    <?php include("jslink.php"); ?>

@@ -87,15 +87,6 @@
   }
   ?>
   
-  <!-- <script>
-    function formvalidation(){
-        var result=true;
-        if(lusername.innerHTML=="" && lpassword.innerHTML==""){
-            result=false;
-        }
-        return result;
-    }
-    </script> -->
   <body>
     
     <div class="container">
@@ -112,15 +103,6 @@
         <span id="loginPasswordError" class="error"></span>
         <i class='bx bxs-lock-alt'></i>
     </div>
-                <!-- <div class="input-box">
-                    <input type="text" name="username" id="username" placeholder="Username">
-                    <i class='bx bxs-user'></i>
-                </div>
-                <div class="input-box">
-                    <input type="password" name="password" id="password" placeholder="Password">
-                    <i class='bx bxs-lock-alt'></i>
-                </div> -->
-
                 <div class="forgot-link">
                     <a href="forgotpass.php">Forgot Password?</a>
                 </div>
@@ -149,7 +131,6 @@
                     <input type="password" name="password" id="signup-password" placeholder="Password" onkeyup="validatePassword(this, document.getElementById('lpassword'))">
                      <!-- onkeyup="validatePassword(this,lpassword)" > -->
                     <span id="lpassword" class="error" ></span>
-                    <i class='bx bxs-lock-alt'></i>
                 </div>
                 <div class="input-box">
                     <input type="password" name="cpassword" id="cpassword" placeholder="Confirm-Password"  onkeyup="validateConfirmPassword()">
@@ -158,7 +139,6 @@
                 </div>
                 <div class="input-box">
                     <input type="file" name="image" id="image" placeholder="image">
-                    <i class='bx bxs-lock-alt'></i> 
                 </div>
                 <input type="submit" name="btn1" value="Sign Up" class="btn"></input>
             </form>
@@ -181,7 +161,6 @@
     </div>
     
     <script src="js/login.js"></script>
-    <script src="../validation.js" defer></script>
-    
+    <script src="../validation.js" defer></script> 
   </body>
 </html>

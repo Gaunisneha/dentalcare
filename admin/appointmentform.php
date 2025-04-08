@@ -50,7 +50,7 @@
 
         if($_SESSION['trans']=='new')
         {
-                $query = "INSERT INTO `appointment`( `appfor`, `docid`, `patientname`, `emailid`, `appdate`, `apptime`, `remark`, `status`) VALUES ('$appfor','$docid','$patientname','$emailid','$appdate','$apptime','$remark','panding')";
+                $query = "INSERT INTO `appointment`( `appfor`, `docid`, `patientname`, `emailid`, `appdate`, `apptime`, `remark`, `status`) VALUES ('$appfor','$docid','$patientname','$emailid','$appdate','$apptime','$remark','Pending')";
                 $result = $dc->insertrecord($query);
             
             if(!$result)
@@ -74,7 +74,7 @@
 
             if($result)
             {
-                header('location:showdoctor.php');
+                header('location:showappointment.php');
             }
         }
         

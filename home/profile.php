@@ -181,18 +181,7 @@
             text-align: center;
         }
     </style>
-    <!-- <style>
-        .form-control {
-            border: 1px solid black;
-        }
-        .form-section {
-            margin: 30px 0;
-        }
-        .error {
-            color: red;
-            font-size: 0.9em;
-        }
-    </style> -->
+   
 </head>
 
 <body>
@@ -289,7 +278,7 @@
 
         var allowedExtensions = ["jpg", "jpeg", "png", "gif"];
         var fileExtension = file.name.split('.').pop().toLowerCase();
-        var fileSize = file.size / 1024 / 1024; // Convert size to MB
+        var fileSize = file.size / 1024 / 1024; 
 
         if (!allowedExtensions.includes(fileExtension)) {
             errorElement.textContent = "Only JPG, JPEG, PNG, and GIF files are allowed.";

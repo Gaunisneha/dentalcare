@@ -6,7 +6,7 @@ class dataclass
 
     public function __construct()
     {
-        $this->conn=mysqli_connect('localhost','root','','dental_dbs');
+        $this->conn=mysqli_connect('localhost','root','','dentcare');
     }
     public function getConnection(){
         return $this->conn;

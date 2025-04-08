@@ -1,11 +1,10 @@
 <?php
 session_start();
-include '../class/dataclass.php'; // Database connection file
-require '../vendor/autoload.php'; // For PDF generation (TCPDF or DomPDF)
+include '../class/dataclass.php'; 
+require '../vendor/autoload.php'; 
 
 $invoice_id = $_GET['invoice_id'];
 
-// Secure the SQL query using prepared statements
 $stmt = $conn->prepare("SELECT * FROM invoices WHERE invoice_id = ?");
 $stmt->bind_param("i", $invoice_id);
 $stmt->execute();
@@ -20,8 +19,8 @@ $services_result = $stmt->get_result();
 $services = $services_result->fetch_all(MYSQLI_ASSOC);
 $stmt->close();
 
-// Define tax percentage
-$tax_percentage = 10; // Change as needed
+// tax percentage
+$tax_percentage = 10; 
 $subtotal = $invoice['total_amount'];
 $tax_amount = ($subtotal * $tax_percentage) / 100;
 $total_with_tax = $subtotal + $tax_amount;
@@ -33,7 +32,7 @@ $total_with_tax = $subtotal + $tax_amount;
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invoice #<?php echo htmlspecialchars($invoice['invoice_id']); ?></title>
-    <link rel="stylesheet" href="styles.css"> <!-- Add your CSS file -->
+    <link rel="stylesheet" href="styles.css"> 
 </head>
 <body>
     <div class="invoice-container">

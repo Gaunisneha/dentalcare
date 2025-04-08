@@ -86,27 +86,12 @@ try {
     transition: 0.3s;
     margin: 5px 0;
 
-    /* border: none;
-    border-radius: 1.5rem;
-    width: 70%;
-    padding: 2%;
-    font-weight: 600;
-    color: #6c757d;
-    cursor: pointer; */
+   
 }
 .profile-edit-btn {
         width: 100%;
     }
-/* .profile-rating{
-    font-size: 12px;
-    color: #818182;
-    margin-top: 5%;
-}
-.profile-rating span{
-    color: #495057;
-    font-size: 15px;
-    font-weight: 600;
-} */
+
 .profile-head .nav-tabs{
     margin-bottom:5%;
 }
@@ -181,7 +166,7 @@ try {
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
+
  <?php
  include 'csslink.php';?>
 
@@ -278,7 +263,7 @@ try {
                                             </div> 
 
                                             <div class="col-md-4">
-                                            <a href="../home/appointment_confirmation.php"><input type="button"   class="profile-edit-btn" name="btnAddMore" value="VAIEW APPOINTMENT"/></a>
+                                            <a href="../home/appointment_confirmation.php"><input type="button"   class="profile-edit-btn" name="btnAddMore" value="VIEW APPOINTMENT"/></a>
 
                                           </div>
                                         </div>

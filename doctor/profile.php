@@ -158,7 +158,7 @@ hr {
                         </a>
                         <div class="navbar-nav w-100">
                             <a href="doctorhome.php" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-                            <a href="doctor_schedule.php" class="nav-item nav-link"><i class="fa fa-user-nurse"></i>Doctor Schedule</a>
+                            <a href="doctor_schedule.php" class="nav-item nav-link"><i class="fa fa-user-nurse"></i>Dentist Schedule</a>
                             <a href="appointment.php" class="nav-item nav-link"><i class="fa fa-calendar-check"></i>Appointments</a>
                         </div>
                     </nav>

@@ -23,7 +23,7 @@
                     <div class="nav-item dropdown">
                       
                     </div>
-                    <a href="doctor_schedule.php" class="nav-item nav-link"><i class="fa fa-user-nurse"></i>Doctor Schedule</a>
+                    <a href="doctor_schedule.php" class="nav-item nav-link"><i class="fa fa-user-nurse"></i>Dentist Schedule</a>
                     <!-- <a href="showregistration.php" class="nav-item nav-link"><i class="fa fa-users"></i>Patient List</a> -->
                     <a href="appointment.php" class="nav-item nav-link"><i class="fa fa-calendar-check"></i>Appointments</a>
                     

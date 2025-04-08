@@ -117,6 +117,49 @@
         }
     </style>
 </head>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    document.getElementById("btnsave").addEventListener("click", function (e) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Do you want to save/update this record?",
+            icon: 'question',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Save it!',
+            cancelButtonText: 'Cancel'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Create a hidden input to simulate form submission for bsave
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "bsave";
+                document.querySelector("form").appendChild(input);
+                document.querySelector("form").submit();
+            }
+        });
+    });
+
+    document.getElementById("btncancel").addEventListener("click", function (e) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "This will cancel the update process.",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, Cancel',
+            cancelButtonText: 'Keep Editing'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Create a hidden input to simulate form submission for bcancel
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = "bcancel";
+                document.querySelector("form").appendChild(input);
+                document.querySelector("form").submit();
+            }
+        });
+    });
+</script>
+
 <body>
 <div class="container">
         <h2>Dentist Form</h2>
@@ -157,8 +200,8 @@
             </div>
             
             <div class="text-center">
-                <button type="submit" class="btn btn-success" name="bsave">Save</button>
-                <button type="submit" class="btn btn-danger" name="bcancel">Cancel</button>
+                <button type="submit" class="btn btn-success"  id="btnsave" name="bsave">Save</button>
+                <button type="submit" class="btn btn-danger" id="btncancel" name="bcancel">Cancel</button>
             </div>
         </form>
     </div>

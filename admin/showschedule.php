@@ -10,7 +10,7 @@ $schedules = $dc->gettable($query);
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Doctor Schedules</title>
+    <title>Dentist Schedules</title>
     <?php include("csslink.php"); ?>
 </head>
 <body>
@@ -19,12 +19,12 @@ $schedules = $dc->gettable($query);
    <div class="content">
    <?php include("header.php"); ?>
     <div class="container mt-4">
-        <h2>Doctor Schedules</h2>
+        <h2>Dentist Schedules</h2>
         <table class="table table-bordered table-striped table-hover">
             <thead class="table-dark">
                 <tr>
                     <th>ID</th>
-                    <th>Doctor Name</th>
+                    <th>Dentist Name</th>
                     <th>Available Days</th>
                     <th>Start Time</th>
                     <th>End Time</th>

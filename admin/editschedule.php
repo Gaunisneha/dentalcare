@@ -54,7 +54,7 @@ if (isset($_POST['update'])) {
     <?php include("header.php"); ?>
 
     <div class="container mt-4">
-        <h2>Edit Doctor Schedule</h2>
+        <h2>Edit Dentist Schedule</h2>
         <form action="" method="POST">
             <div class="mb-3">
                 <label class="form-label">Doctor Name:</label>

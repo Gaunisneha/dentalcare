@@ -47,10 +47,10 @@ if (isset($_POST['submit'])) {
     <?php include("header.php"); ?>
 
     <div class="container mt-4">
-        <h2>Add Doctor Schedule</h2>
+        <h2>Add Dentist Schedule</h2>
         <form action="" method="POST">
             <div class="mb-3">
-                <label class="form-label">Doctor Name:</label>
+                <label class="form-label">Dentist Name:</label>
                 <input type="text" class="form-control" name="docname" value="<?php echo $docname; ?>" required>
             </div>
 
