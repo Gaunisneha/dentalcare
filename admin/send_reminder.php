@@ -1,9 +1,7 @@
 <?php
-// Include database connection
 include("../class/dataclass.php");
 $dc = new dataclass();
 
-// Fetch all upcoming appointments
 $query = "SELECT appid, patientname, appdate, apptime FROM appointment WHERE appdate >= CURDATE()";
 $result = $dc->gettable($query);
 ?>

@@ -22,10 +22,7 @@
             header ('location:servicesform.php');
         
         }
-
         
-
-
     if(isset($_POST['bupdate']))
     {
         $serviceid=$_POST['bupdate'];

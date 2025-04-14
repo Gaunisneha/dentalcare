@@ -8,7 +8,7 @@
     <?php 
     session_start();
     if (!isset($_SESSION['adminname'])) {
-        header("Location: adminlogin.php"); // Redirect to login page if not logged in
+        header("Location: adminlogin.php");
         exit();
     }
     include("csslink.php"); 
@@ -62,11 +62,6 @@
                    
                 </div>
             </div>
-            <!-- Sale & Revenue End -->
-
-
-          
-
    </div>
    <?php include("footer.php"); ?>
    <?php include("jslink.php"); ?>

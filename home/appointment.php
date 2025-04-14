@@ -22,6 +22,7 @@
      $query2="";
      $msg="";
      $dc=new dataclass();
+     
      ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -118,9 +119,9 @@ function validateEmail() {
         
         let today = new Date();
         let selectedDate = new Date(appDate);
-        today.setHours(0, 0, 0, 0); // Reset time for comparison
+        today.setHours(0, 0, 0, 0);
 
-        let maxDate = new Date();
+    let maxDate = new Date();
     maxDate.setMonth(maxDate.getMonth() + 1);
     maxDate.setHours(0, 0, 0, 0);
 
@@ -164,7 +165,6 @@ function validateEmail() {
         }
     }
 </script>
-
 
 <?php 
      if(isset($_POST['btn1'])) 

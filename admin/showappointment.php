@@ -96,7 +96,7 @@
                         echo("<td>".$rw['apptime']."</td>");
                         echo("<td>".$rw['remark']."</td>");
                         // echo("<td>".$rw['status']."</td>");
-                        echo("<td><button class='btn btn-danger btn-sm' type='button' name='bdelete' value=".$rw['appid'].">
+                        echo("<td><button class='btn btn-danger btn-sm delete-btn' type='button' name='bdelete' value=".$rw['appid'].">
                         <i class='fas fa-trash-alt'></i></button></td>");
                         // echo("<td><button class='btn btn-warning btn-sm' type='button' name='bupdate' value=".$rw['appid'].">
                         //  <i class='fas fa-edit'></i></button></td>");

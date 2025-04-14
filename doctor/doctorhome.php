@@ -117,7 +117,6 @@
 
                     <?php
 
-// Get current month and year
 $month = isset($_GET['month']) ? $_GET['month'] : date('m');
 $year = isset($_GET['year']) ? $_GET['year'] : date('Y');
 $firstDayOfMonth = strtotime("$year-$month-01");

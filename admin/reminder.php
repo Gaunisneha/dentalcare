@@ -10,7 +10,6 @@ $dc = new dataclass();
 if (isset($_POST['send_reminder'])) {
     $appid = $_POST['appid'];
 
-    // Get appointment details
     $query = "SELECT * FROM appointment WHERE appid = '$appid'";
     $result = $dc->gettable($query);
     $app = mysqli_fetch_assoc($result);
@@ -24,6 +23,7 @@ if (isset($_POST['send_reminder'])) {
         exit;
     }
     else{
+
     // Fetch appointment details
     $emailid = $app['emailid'];
     $patientname = $app['patientname'];
@@ -35,7 +35,7 @@ if (isset($_POST['send_reminder'])) {
     // Email subject
     $subject = "Reminder: Upcoming Appointment on $appdate at $apptime";
 
-    // Email body for Dentist
+    // Dentist
     $dentist_body = "
         <p>Dear Dr. $docname,</p>
         <p>This is a reminder that you have an upcoming appointment with patient $patientname on $appdate at $apptime.</p>
@@ -43,7 +43,7 @@ if (isset($_POST['send_reminder'])) {
         <p>Best regards,<br>Dental Care System</p>
     ";
 
-    // Email body for Patient
+    // Patient
     $patient_body = "
         <p>Dear $patientname,</p>
         <p>This is a reminder for your upcoming appointment with Dr. $docname on $appdate at $apptime.</p>
@@ -53,9 +53,6 @@ if (isset($_POST['send_reminder'])) {
 
     echo "<script>showLoadingSpinner();</script>";
 
-// Your existing email sending logic...
-
-// Once emails are sent, hide the spinner
 echo "<script>hideLoadingSpinner();</script>";
 
     // Send emails
@@ -70,7 +67,6 @@ echo "<script>hideLoadingSpinner();</script>";
   
 }
 } 
-// Function to send email using PHPMailer
 function sendEmail($to, $subject, $body) {
   $mail = new PHPMailer(true);
   try {
@@ -78,8 +74,8 @@ function sendEmail($to, $subject, $body) {
       $mail->isSMTP();
       $mail->Host = 'smtp.gmail.com';
       $mail->SMTPAuth = true;
-      $mail->Username='manasiyamosinali1@gmail.com';              // Replace with your email
-      $mail->Password ='rzjdcgybzphcttog';  // Replace with your app password
+      $mail->Username='manasiyamosinali1@gmail.com';              
+      $mail->Password ='rzjdcgybzphcttog';  
       $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
       $mail->Port = 587;
 
@@ -98,7 +94,7 @@ function sendEmail($to, $subject, $body) {
       // Send success message to console
       echo "Email sent successfully to $to.<br>";
       
-      return true;  // After printing, return true to indicate success
+      return true;  
   } catch (Exception $e) {
       return false;
   }
@@ -112,8 +108,6 @@ function sendEmail($to, $subject, $body) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Appointment Reminder</title>
     <style>
-
-      /* General page setup */
 body {
     font-family: 'Arial', sans-serif;
     background-color: #f0f4f8;
@@ -126,7 +120,6 @@ body {
     flex-direction: column;
 }
 
-/* Navbar Styles */
 .navbar {
     width: 100%;
     background-color: #007bff;
@@ -156,7 +149,6 @@ body {
     background-color: #0056b3;
 }
 
-/* Content Styling */
 .container {
     width: 100%;
     max-width: 600px;
@@ -171,19 +163,6 @@ body {
     animation: rotateIn 0.8s ease-in-out;
 }
 
-/* 3D Rotate Animation */
-@keyframes rotateIn {
-    0% {
-        transform: rotateY(90deg);
-        opacity: 0;
-    }
-    100% {
-        transform: rotateY(0deg);
-        opacity: 1;
-    }
-}
-
-/* Success and Error Messages Styling */
 p {
     padding: 15px;
     font-size: 16px;
@@ -196,27 +175,23 @@ p {
     animation: fadeInMessage 1s ease-out forwards;
 }
 
-/* Success Message */
 p.success {
     background-color: #28a745;
     color: white;
     transform: scale(1);
 }
 
-/* Error Message */
 p.error {
     background-color: #dc3545;
     color: white;
     transform: scale(1);
 }
 
-/* Hover effect for messages */
 p:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-/* Fade-In Animation for messages */
 @keyframes fadeInMessage {
     0% {
         opacity: 0;
@@ -228,10 +203,9 @@ p:hover {
     }
 }
 
-/* Spinner Styling */
 .spinner {
-    border: 4px solid #f3f3f3; /* Light gray */
-    border-top: 4px solid #3498db; /* Blue */
+    border: 4px solid #f3f3f3; 
+    border-top: 4px solid #3498db; 
     border-radius: 50%;
     width: 30px;
     height: 30px;
@@ -244,7 +218,7 @@ p:hover {
     100% { transform: rotate(360deg); }
 }
 
-/* Responsiveness for smaller screens */
+
 @media (max-width: 768px) {
     .navbar .nav-links a {
         font-size: 16px;
@@ -270,10 +244,6 @@ p:hover {
             
         </div>
     </nav>
-
-    <!-- Your existing PHP code here (reminder form, etc.) -->
-
-    <!-- Content container with message -->
     <div class="container">
         <?php if (isset($message)) { echo $message; } ?>
         <div class="spinner" id="loadingSpinner" style="display: none;"></div>
@@ -291,11 +261,7 @@ p:hover {
         document.getElementById('loadingSpinner').style.display = 'none';
     }
 
-    // Example usage (you can call these functions in your PHP script)
-    // showLoadingSpinner();
-    // hideLoadingSpinner(); // After email is sent
 </script>
-
 </html>
 
 
